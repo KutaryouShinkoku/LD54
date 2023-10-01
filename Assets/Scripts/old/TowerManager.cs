@@ -10,19 +10,19 @@ public class TowerManager : MonoBehaviour
     public Text towerCostDisp;
 
     [Header("Tower")]
-    public TowerBase towerBase;
+    public TowerData towerBase;
     public Sprite towerIcon;
     public int cost;
-    [SerializeField] List<TowerBase> towers;
-    //TODO£ºÆäËü¿ÉÉı¼¶µÄÊôĞÔ£¬ÊÇÓ²ÁĞ³öÀ´»¹ÊÇ¹éÒ»Àà
+    [SerializeField] List<TowerData> towers;
+    //TODOï¼šå…¶å®ƒå¯å‡çº§çš„å±æ€§ï¼Œæ˜¯ç¡¬åˆ—å‡ºæ¥è¿˜æ˜¯å½’ä¸€ç±»
 
     [Header("Func")]
     public GameObject towerPrefab;
     public TowerSlot[] towerSlots;
-    //public Transform towerHolderTransform; //TODO:ÍÏ¶¯
+    //public Transform towerHolderTransform; //TODO:æ‹–åŠ¨
     public TowerManager towerManager;
 
-    //¼ò¶øÑÔÖ®£¬ÎÒÊÇÏÈ×öÁËÒ»¸ö´óµÄUIÃæ°å£¬È»ºóÀïÃæ×öslot£¬slotÀïÃæÉú³ÉËşµÄPrefab£¬ËşPrefabÀï°üº¬ËşµÄÍ¼±ê¡¢·ÑÓÃºÍÊôĞÔ¡£
+    //ç®€è€Œè¨€ä¹‹ï¼Œæˆ‘æ˜¯å…ˆåšäº†ä¸€ä¸ªå¤§çš„UIé¢æ¿ï¼Œç„¶åé‡Œé¢åšslotï¼Œsloté‡Œé¢ç”Ÿæˆå¡”çš„Prefabï¼Œå¡”Prefabé‡ŒåŒ…å«å¡”çš„å›¾æ ‡ã€è´¹ç”¨å’Œå±æ€§ã€‚
     void Start()
     {
         foreach (var tower in towers)
@@ -32,8 +32,8 @@ public class TowerManager : MonoBehaviour
         }
 
     }
-    //°Ñslot³õÊ¼»¯µ½Ñ¡ÈË½çÃæ
-    public void AddTowers(TowerBase towerBase)
+    //æŠŠslotåˆå§‹åŒ–åˆ°é€‰äººç•Œé¢
+    public void AddTowers(TowerData towerBase)
     {
         for(int i = 0; i < towerSlots.Length; i++)
         {
@@ -46,7 +46,7 @@ public class TowerManager : MonoBehaviour
             }
         }
 
-        ////³õÊ¼»¯ËşµÄ³õÊ¼ĞÅÏ¢
+        ////åˆå§‹åŒ–å¡”çš„åˆå§‹ä¿¡æ¯
         //towerIcon = towerBase.TowerIcon;
         //cost = towerBase.Cost;
 
@@ -54,8 +54,8 @@ public class TowerManager : MonoBehaviour
         //towerIconDisp.sprite = towerIcon;
         //towerCostDisp.text = "" + cost;
     }
-    //ÔÚslotÀïÉú³ÉÒ»¸öËşPrefab
-    public void SpawnNewTower(TowerBase tower,TowerSlot slot)
+    //åœ¨sloté‡Œç”Ÿæˆä¸€ä¸ªå¡”Prefab
+    public void SpawnNewTower(TowerData tower,TowerSlot slot)
     {
         GameObject newTowerGO = Instantiate(towerPrefab, slot.transform);
         TowerInSlot towerInSlot = newTowerGO.GetComponent<TowerInSlot>();

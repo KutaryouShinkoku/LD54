@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TowerInSlot : MonoBehaviour
 {
-    [HideInInspector] public TowerBase towerBase;
+    [HideInInspector] public TowerData towerBase;
 
     public Image image;
     public Text cost;
@@ -16,7 +16,7 @@ public class TowerInSlot : MonoBehaviour
         InitialiseTower(towerBase, towerManager);
     }
 
-    public void InitialiseTower(TowerBase newTower, TowerManager manager)
+    public void InitialiseTower(TowerData newTower, TowerManager manager)
     {
         towerBase = newTower;
         image = ImgGO.GetComponent<Image>();
@@ -26,6 +26,6 @@ public class TowerInSlot : MonoBehaviour
         Debug.Log($"{newTower.name} Initialised Successfully!");
     }
 
-    //TODO£ºÍÏ×§·ÀÓùËþµ½³¡ÉÏ
+    //TODOï¿½ï¿½ï¿½ï¿½×§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 }

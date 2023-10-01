@@ -11,10 +11,17 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4190da325e1a9714c9ee3a98af743027, type: 3}
   m_Name: Air2
-  m_EditorClassIdentifier: 
-  towerIcon: {fileID: -1118623971, guid: 8049ea91a9d5fca4dab4024c0915dbe6, type: 3}
-  cost: 180
-  attack: 3
-  attackInterval: 1
-  attackType: 1
+  m_EditorClassIdentifier: Assembly-CSharp::TowerBase
+  id: 4
+  towerIcon: {fileID: 21300000, guid: ca6a66f8e2ae9c24c8c6b39c49206a0d, type: 3}
+  cost: 0
+  attack: 0
+  attackInterval: 0
+  attackType: 0
   hp: 0
+  links:
+  - {x: -1, y: -1}
+  - {x: -1, y: 0}
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: 1, y: 1}
