@@ -1350,25 +1350,28 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.42
-  m_Text: '-DESIGNER-
-
-    Nocardia
-
-    -PROGRAMMER-
-
-    Foraland
+  m_Text: '-PROGRAMMER-
 
     A.G.
 
-    3
+    Foraland
+
+    yijin
 
     -ARTIST-
 
+    Cheese
+
+    Nocardia
+
     taken
 
-    2
+    -DESIGNER-
 
-    3'
+    ALL
+    MEMBER
+
+'
 --- !u!222 &1214034945
 CanvasRenderer:
   m_ObjectHideFlags: 0
