@@ -8,7 +8,7 @@ public class EnemyData : ScriptableObject
 
     [SerializeField] private List<int> _attack;
     [SerializeField] private AttackType _enemyType;
-    [SerializeField] private List<float> _speed;
+    [SerializeField] private float _speed;
     [SerializeField] private int _level;
     [SerializeField] private RuntimeAnimatorController animator;
 
@@ -17,7 +17,7 @@ public class EnemyData : ScriptableObject
 
     public AttackType enemyType => _enemyType;
 
-    public float speed => _speed[level];
+    public float speed => _speed;
 
     public int level => _level;
     public RuntimeAnimatorController Animator => animator;
