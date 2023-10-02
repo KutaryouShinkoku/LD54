@@ -9,4 +9,6 @@ public class Res : Singleton<Res>
     [Header("图片")]
     public Sprite fertileGridSprite;
     public Sprite poorGridSprite;
+    [Header("敌人")]
+    public GameObject enemyPrefab;
 }
