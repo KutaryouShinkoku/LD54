@@ -29,19 +29,19 @@ public class OperateCtrl : Singleton<OperateCtrl>
                 map.PlaceTower(towerId, map.GetGridByPos(mousePos).crd);
                 break;
             case EPreviewState.Occupied:
-                UI.Ins.Get<U_OperateTips>().SetData("摆放位置已被占用");
+                UI.Ins.Get<U_OperateTips>().SetData("Lands are occupied");
                 break;
             case EPreviewState.OutOfEdge:
-                UI.Ins.Get<U_OperateTips>().SetData("摆放出界");
+                UI.Ins.Get<U_OperateTips>().SetData("Out of border");
                 break;
             case EPreviewState.CantBePlaced:
-                UI.Ins.Get<U_OperateTips>().SetData("不可摆放到贫瘠土地");
+                UI.Ins.Get<U_OperateTips>().SetData("Ivalid arrangement");
                 break;
             case EPreviewState.Colonized:
-                UI.Ins.Get<U_OperateTips>().SetData("摆放位置已被入侵");
+                UI.Ins.Get<U_OperateTips>().SetData("Lands are ivaded");
                 break;
             case EPreviewState.LackEnergy:
-                UI.Ins.Get<U_OperateTips>().SetData("能量不足");
+                UI.Ins.Get<U_OperateTips>().SetData("No enough energy");
                 break;
         }
         ClearPreview();
