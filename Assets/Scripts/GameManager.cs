@@ -6,10 +6,12 @@ public class GameManager : Singleton<GameManager>
 {
     public int round = 1;
     public int money = 0;
+    public EnemyCreatorData _enemyCreatorData;
     public void InitGame()
     {
         round = 1;
         money = 0;
+        _enemyCreatorData = Configs.Ins.GetEnemyCreatorData(round);
     }
     /// <summary>
     /// 玩家的防御设施升级状况   key: towerId, value: level
