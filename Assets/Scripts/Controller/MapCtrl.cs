@@ -10,7 +10,41 @@ public class MapCtrl : Singleton<MapCtrl>
     public Transform leftDown;
     public Transform gridFolder;
     private Vector2 zeroPos => leftDown.position;
+
+    //======================结构数据====================//
+    /// <summary>
+    /// 路径信息
+    /// </summary>
+    private PathInfo[] paths = null;
     public Grid[,] grids = null;
+    public List<TowerObj> towers = new List<TowerObj>();
+    public List<Enemy> enemies = new List<Enemy>();
+    //=================================================//
+    public PathInfo GetPathByCrd(Vector2Int crd)
+    {
+        for (int i = 0; i < paths.Length; i++)
+        {
+            if (crd.y == paths[i].pathId)
+            {
+                return paths[i];
+            }
+        }
+        return null;
+    }
+    public PathInfo GetPathById(int pathId)
+    {
+        for (int i = 0; i < paths.Length; i++)
+        {
+            if (paths[i].pathId == pathId)
+                return paths[i];
+
+        }
+        return null;
+    }
+    private void Start()
+    {
+        InitMap();
+    }
     [UnityEditor.MenuItem("Map/Generate")]
     public static void GenerateMap()
     {
@@ -20,11 +54,16 @@ public class MapCtrl : Singleton<MapCtrl>
     {
         ClearMap();
         grids = new Grid[width, height];
-        for (int i = 0; i < width; i++)
+        paths = new PathInfo[height - 2];
+        towers = new List<TowerObj>();
+        enemies = new List<Enemy>();
+        for (int j = 0; j < height; j++)
         {
-            for (int j = 0; j < height; j++)
+            bool isFertile = !(j == 0 || j == height - 1);
+            if (isFertile)
+                paths[j - 1] = new PathInfo(j, width - 1);
+            for (int i = 0; i < width; i++)
             {
-                bool isFertile = !(j == 0 || j == height - 1);
                 GameObject grid = Res.Ins.gridPrefab.OPGet();
                 grid.transform.SetParent(gridFolder);
                 grid.transform.position = leftDown.position + new Vector3(i * gridSize.x, j * gridSize.y, 0);
@@ -80,30 +119,43 @@ public class MapCtrl : Singleton<MapCtrl>
     }
     public void PlaceTower(int towerId, Vector2Int targetCrd)
     {
-        TowerInfo tower = new TowerInfo(towerId, GameManager.Ins.towerLevelMap[towerId]);
+        Debug.Log("place" + towerId + "at" + targetCrd);
+        TowerObj tower = Res.Ins.towerPrefab.OPGet().GetComponent<TowerObj>();
+        Grid targetGrid = GetGrid(targetCrd);
+        tower.transform.SetParent(targetGrid.towerFolder);
+        tower.Init(towerId, targetCrd);
         List<Vector2Int> crdList = tower.data.Links;
         for (int i = 0; i < crdList.Count; i++)
         {
             Grid grid = GetGrid(targetCrd + crdList[i]);
             grid.Occupied(tower);
         }
+        GetPathByCrd(targetCrd).AddTower(tower);
     }
-    public void RemoveTower(int towerId, Vector2Int targetCrd)
+    public void DestoryTower(TowerObj tower)
     {
-        TowerData data = Configs.Ins.GetTower(towerId);
+        GetPathByCrd(tower.centerCrd).RemoveTower(tower);
 
-        List<Vector2Int> crdList = data.Links;
+        List<Vector2Int> crdList = tower.data.Links;
         for (int i = 0; i < crdList.Count; i++)
         {
-            Grid grid = GetGrid(targetCrd + crdList[i]);
+            Grid grid = GetGrid(tower.centerCrd + crdList[i]);
             grid.CancelOccupied();
         }
-    }
-    public void PlaceEnemy()
-    {
+        tower.gameObject.OPPush();
 
     }
-    public void RemoveEnemy()
+    /// <summary>
+    /// 添加生成的敌人
+    /// </summary>
+    /// <param name="enemy"></param>
+    /// <param name="pathId">第几路，范围1～4</param>
+    public void AddEnemy(Enemy enemy)
+    {
+        enemies.Add(enemy);
+        GetPathByCrd(enemy.crd).AddEnemy(enemy);
+    }
+    public void KillEnemy(Enemy enemy)
     {
 
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Air1
   m_EditorClassIdentifier: Assembly-CSharp::TowerBase
   id: 3
-  towerIcon: {fileID: 21300000, guid: 2538710101d0f1f4e8976b3495cd1f75, type: 3}
+  towerIcon: {fileID: 21300000, guid: 4d25fa5ce36270c4999f0d59673684b1, type: 3}
   cost: 0
   attack: 0
   attackInterval: 0

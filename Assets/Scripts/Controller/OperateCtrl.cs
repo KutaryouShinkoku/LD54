@@ -6,11 +6,14 @@ public enum EPreviewState
     Access,
     Occupied,
     OutOfEdge,
+    CantBePlaced,
+    Colonized,
 }
 public class OperateCtrl : Singleton<OperateCtrl>
 {
+    public Transform test;
+    private List<Grid> previewGrids = new List<Grid>();
     private MapCtrl map => MapCtrl.Ins;
-    public Transform targetImg;
     public Vector2 mousePos => Camera.main.ScreenToWorldPoint(Input.mousePosition);
     public void EnterPlace(int towerId)
     {
@@ -18,14 +21,80 @@ public class OperateCtrl : Singleton<OperateCtrl>
     }
     public void ExitPlace(int towerId)
     {
+        EPreviewState res = PreviewByMouse(towerId);
+        switch (res)
+        {
+            case EPreviewState.Access:
+                map.PlaceTower(towerId, map.GetGridByPos(mousePos).crd);
+                break;
+            case EPreviewState.Occupied:
+                UI.Ins.Get<U_OperateTips>().SetData("摆放位置已被占用");
+                break;
+            case EPreviewState.OutOfEdge:
+                UI.Ins.Get<U_OperateTips>().SetData("摆放出界");
+                break;
+            case EPreviewState.CantBePlaced:
+                UI.Ins.Get<U_OperateTips>().SetData("不可摆放到贫瘠土地");
+                break;
+            case EPreviewState.Colonized:
+                UI.Ins.Get<U_OperateTips>().SetData("摆放位置已被入侵");
+                break;
+        }
+        ClearPreview();
+    }
+    public void UpdatePlace(int towerId)
+    {
+        ClearPreview();
+        List<Grid> grids = new List<Grid>();
+        TowerData data = Configs.Ins.GetTower(towerId);
+        Vector2Int crd = map.Pos2crd(mousePos);
+        Debug.Log(crd);
+        Grid centerGrid = map.GetGrid(crd);
+        if (!centerGrid)
+            return;
+        data.Links.ForEach(e =>
+        {
+            Grid grid = map.GetGrid(map.Pos2crd(mousePos) + e);
+            if (!e.Equals(Vector2Int.zero))
+            {
+                grids.Add(grid);
+            }
+        });
+        if (centerGrid)
+        {
+            centerGrid.PreviewPlace(towerId);
+        }
+        grids.ForEach(e =>
+        {
+            if (e && (e.isColonized || e.tower != null))
+            {
+                e.PreviewErrorOccupy();
+            }
+            previewGrids.Add(e);
+        });
+        previewGrids.Add(centerGrid);
+
+    }
+    private void ClearPreview()
+    {
+        previewGrids.ForEach(e => e?.PreviewCancel());
+        previewGrids.Clear();
+
+    }
+    private EPreviewState PreviewByMouse(int towerId)
+    {
         Grid targetGrid = map.GetGridByPos(mousePos);
         if (!targetGrid)
         {
-            UI.Ins.Get<U_OperateTips>().SetData("不可摆放到空地格");
+            return EPreviewState.OutOfEdge;
         }
         else if (!targetGrid.isFertile)
         {
-            UI.Ins.Get<U_OperateTips>().SetData("不可摆放到贫瘠土地");
+            return EPreviewState.CantBePlaced;
+        }
+        else if (targetGrid.isColonized)
+        {
+            return EPreviewState.Colonized;
         }
         else
         {
@@ -37,21 +106,16 @@ public class OperateCtrl : Singleton<OperateCtrl>
                 Grid grid = map.GetGrid(targetCrd + crdList[i]);
                 if (!grid)
                 {
-                    UI.Ins.Get<U_OperateTips>().SetData("摆放出界");
+                    return EPreviewState.OutOfEdge;
                 }
                 else if (grid.tower != null)
                 {
-                    UI.Ins.Get<U_OperateTips>().SetData("摆放位置已被占用");
+                    return EPreviewState.Occupied;
                 }
-                else
-                {
-                    map.PlaceTower(towerId, targetCrd);
-                }
+
             }
         }
-    }
-    public void UpdatePlace(int towerId)
-    {
+        return EPreviewState.Access;
 
     }
 }

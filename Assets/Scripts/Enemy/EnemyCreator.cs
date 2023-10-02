@@ -31,7 +31,8 @@ public class EnemyCreator : MonoBehaviour
             GameObject enemy = Res.Ins.enemyPrefab.OPGet();
             enemy.transform.SetParent(_creatorRoot);
             Enemy enemyScript = enemy.GetComponent<Enemy>();
-            //enemyScript.onInit(Configs.Ins.getEnemy();
+            enemyScript.onInit(Configs.Ins.getEnemy(EEnemyType.enemy);
+            MapCtrl.Ins.AddEnemy(enemy);
             _isCreated = true;
             time = Random.Range(_enemyCreatorData.minCreateTime, _enemyCreatorData.maxCreateTime);
         }

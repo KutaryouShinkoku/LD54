@@ -13,7 +13,7 @@ public class TowerData : ScriptableObject
     //可升级数据
     [SerializeField] int attack; //单发伤害
     [SerializeField] float attackInterval; //攻击间隔（秒）
-    [SerializeField] TowerAttackType attackType; //攻击类型（对地对空）
+    [SerializeField] AttackType attackType; //攻击类型（对地对空）
     [SerializeField] int hp; //血量
     [SerializeField] List<Vector2Int> links;
 
@@ -39,7 +39,7 @@ public class TowerData : ScriptableObject
     {
         get { return attackInterval; }
     }
-    public TowerAttackType AttackType
+    public AttackType AttackType
     {
         get { return attackType; }
     }
@@ -60,4 +60,4 @@ public class TowerData : ScriptableObject
 }
 
 //攻击类型（对地，对空，都能打）
-public enum TowerAttackType { Ground, Air, All }
+public enum AttackType { Ground, Air, All }

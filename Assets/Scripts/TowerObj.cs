@@ -4,15 +4,39 @@ using UnityEngine;
 
 public class TowerObj : MonoBehaviour
 {
-    public TowerInfo info;
+    public int towerId = 0;
+    public TowerData data => Configs.Ins.GetTower(towerId);
+    public int level => GameManager.Ins.GetTowerLevel(towerId);
+    public int hp = 100;
     public Vector2Int centerCrd;//攻击锚点坐标
-    public void Init(TowerInfo info, Vector2Int centerCrd)
+    public PathInfo path => MapCtrl.Ins.GetPathByCrd(centerCrd);
+    private float atkTimer = 0;
+    public SpriteRenderer sprr;
+    public void Init(int towerId, Vector2Int centerCrd)
     {
-        this.info = info;
+        this.towerId = towerId;
         this.centerCrd = centerCrd;
+        transform.localPosition = Vector3.zero;
+        this.sprr.sprite = data.TowerIcon;
     }
     public void Clear()
     {
-        this.gameObject.OPPush();
+        gameObject.OPPush();
+    }
+    private void Update()
+    {
+
+    }
+    private void Attack()
+    {
+        Enemy frontEnemy = path.GetFrontEnemy(data.AttackType);
+        if (frontEnemy)
+        {
+
+        }
+    }
+    public void OnPathInfoChanged()
+    {
+
     }
 }
