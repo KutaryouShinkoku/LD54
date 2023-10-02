@@ -10,10 +10,11 @@ public class EnemyData : ScriptableObject
     [SerializeField] private int _attack;
     [SerializeField] private EEnemyType _enemyType;
     [SerializeField] private float _speed;
+    [SerializeField] private int _level;
 
     public int hp
     {
-        get { return _hp ; }
+        get { return _hp; }
     }
     public int attack
     {
@@ -26,6 +27,10 @@ public class EnemyData : ScriptableObject
     public float speed
     {
         get { return _speed; }
+    }
+    public int level
+    {
+        get { return _level; }
     }
 
 

@@ -23,7 +23,7 @@ public class EnemyCreator : MonoBehaviour
             GameObject enemy = Res.Ins.enemyPrefab.OPGet();
             enemy.transform.SetParent(_creatorRoot);
             Enemy enemyScript = enemy.GetComponent<Enemy>();
-            enemyScript.onInit();
+            //enemyScript.onInit(Configs.Ins.getEnemy();
             _isCreated = true;
             
         }
