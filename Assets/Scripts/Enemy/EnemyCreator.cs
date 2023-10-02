@@ -7,7 +7,7 @@ public class EnemyCreator : MonoBehaviour
 
     [SerializeField]
     public Transform creatorRoot;
-    private RoundData _enemyCreatorData => GameManager.Ins._enemyCreatorData;
+    private RoundData _enemyCreatorData => GameManager.Ins.roundData;
     private bool active = false;
     //public int 
     // Use this for initialization

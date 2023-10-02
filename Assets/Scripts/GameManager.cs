@@ -6,7 +6,8 @@ public class GameManager : Singleton<GameManager>
 {
     public int round = 1;
     public int money = 0;
-    public RoundData _enemyCreatorData => Configs.Ins.GetEnemyCreatorData(round);
+    private float waveTimer = 0;
+    public RoundData roundData => Configs.Ins.GetEnemyCreatorData(round);
     public void InitGame()
     {
         round = 1;
@@ -28,6 +29,14 @@ public class GameManager : Singleton<GameManager>
     /// 结束进攻波次
     /// </summary>
     public void FinishWave()
+    {
+
+    }
+    private void StartWave()
+    {
+        RoundData roundData
+    }
+    private void Update()
     {
 
     }

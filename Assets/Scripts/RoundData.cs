@@ -4,6 +4,10 @@ using System.Collections;
 [CreateAssetMenu(menuName = "RoundData", fileName = "new RoundData")]
 public class RoundData : ScriptableObject
 {
+    /// <summary>
+    /// 准备时间
+    /// </summary>
+    [SerializeField] private float _prepareTime;
     [SerializeField] private int _round;
     [SerializeField] private int _minCreateTime;
     [SerializeField] private int _maxCreateTime;
@@ -56,6 +60,10 @@ public class RoundData : ScriptableObject
     public int BaseLevel
     {
         get { return _baseLevel; }
+    }
+    public float PrepareTime
+    {
+        get { return _prepareTime; }
     }
 }
 
