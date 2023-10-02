@@ -69,7 +69,7 @@ public class GameManager : Singleton<GameManager>
         waveTimer = 0;
         isInPrepare = true;
         progressAnimator.Play("Enter");
-        roundText.text = "第" + round + "波即将来临";
+        roundText.text = "Round" + round + "are comming!";
     }
 
     private void Update()
