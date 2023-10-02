@@ -73,7 +73,7 @@ public class GameManager : Singleton<GameManager>
         waveTimer = 0;
         isInPrepare = true;
         progressAnimator.Play("Enter");
-        roundText.text = "Round" + round + "are comming!";
+        roundText.text = "Round" + round + " are coming!";
     }
 
     private void Update()
