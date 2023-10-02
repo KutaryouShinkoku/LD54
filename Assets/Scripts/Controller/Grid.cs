@@ -5,6 +5,7 @@ using UnityEngine;
 public class Grid : MonoBehaviour
 {
     public bool isFertile = false;
+    public bool isOccupy = false;
     public Vector2Int crd;
     public void Init(bool isFertile)
     {

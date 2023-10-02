@@ -28,7 +28,7 @@ public class MapCtrl : Singleton<MapCtrl>
                 GameObject grid = Res.Ins.gridPrefab.OPGet();
                 grid.transform.SetParent(gridFolder);
                 grid.transform.position = leftDown.position + new Vector3(i * gridSize.x, j * gridSize.y, 0);
-                Vector2Int crd = new Vector2Int(i,j);
+                Vector2Int crd = new Vector2Int(i, j);
                 Grid com = grid.GetComponent<Grid>();
                 com.Init(isFertile);
                 grids[crd.x, crd.y] = com;
@@ -65,5 +65,9 @@ public class MapCtrl : Singleton<MapCtrl>
         if (crd.x < 0 || crd.x >= width || crd.y < 0 || crd.y >= height)
             return false;
         return true;
+    }
+    public Grid GetGridByPos(Vector2 pos)
+    {
+        return GetGrid(Pos2crd(pos));
     }
 }
