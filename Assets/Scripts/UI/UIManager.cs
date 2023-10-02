@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Text _energyCount;
     public void onRefreshEnergyCount()
     {
-        _energyCount.text = "" + GameManager.Ins.money;
+        _energyCount.text = "" + GameManager.Ins.energy;
     }
     public void onClickChangeUpgrade()
     {

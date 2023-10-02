@@ -65,7 +65,7 @@ public class MapCtrl : Singleton<MapCtrl>
                 paths[j - 1] = new PathInfo(j, width - 1);
             for (int i = 0; i < width; i++)
             {
-                if (i > width - 3)
+                if (i > width - 2)
                     isFertile = false;
                 GameObject grid = Res.Ins.gridPrefab.OPGet();
                 grid.transform.SetParent(gridFolder);
