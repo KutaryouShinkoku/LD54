@@ -14,4 +14,6 @@ public class Res : Singleton<Res>
     public GameObject enemyPrefab;
     [Header("防御塔")]
     public GameObject towerPrefab;
+    [Header("弹幕")]
+    public GameObject projectilePrefab;
 }

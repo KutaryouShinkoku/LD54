@@ -11,6 +11,7 @@ public class TowerObj : MonoBehaviour
     public Vector2Int centerCrd;//攻击锚点坐标
     public PathInfo path => MapCtrl.Ins.GetPathByCrd(centerCrd);
     private float atkTimer = 0;
+    private bool isInAtking = false;
     public SpriteRenderer sprr;
     public void Init(int towerId, Vector2Int centerCrd)
     {
@@ -25,18 +26,31 @@ public class TowerObj : MonoBehaviour
     }
     private void Update()
     {
-
+        if (isInAtking)
+        {
+            atkTimer += Time.deltaTime;
+            if (atkTimer >= Configs.Ins.towerAtkInterval)
+            {
+                atkTimer = 0;
+                Attack();
+            }
+        }
+        else
+        {
+            atkTimer = 0;
+        }
     }
     private void Attack()
     {
         Enemy frontEnemy = path.GetFrontEnemy(data.AttackType);
         if (frontEnemy)
         {
-
+            Projectile projectile = Res.Ins.projectilePrefab.OPGet().GetComponent<Projectile>();
+            projectile.Init(path.pathId);
         }
     }
     public void OnPathInfoChanged()
     {
-
+        isInAtking = path.GetFrontEnemy(data.AttackType) != null;
     }
 }

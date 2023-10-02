@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     public AttackType type;
     public int pathId;
     public PathInfo info => MapCtrl.Ins.GetPathById(pathId);
+    public SpriteRenderer render;
     public void Init(int pathId)
     {
         this.pathId = pathId;

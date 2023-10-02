@@ -8,6 +8,7 @@ public class U_OperateTips : UINode
     private Animator animator => GetComponent<Animator>();
     public void SetData(string text)
     {
+        this.gameObject.SetActive(true);
         tips.text = text;
         animator.Play("enter");
     }

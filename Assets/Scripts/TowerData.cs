@@ -9,13 +9,9 @@ public class TowerData : ScriptableObject
     //基本数据
     [SerializeField] int id;
     [SerializeField] Sprite towerIcon;
-    [SerializeField] int cost;
-    //可升级数据
-    [SerializeField] int attack; //单发伤害
-    [SerializeField] float attackInterval; //攻击间隔（秒）
     [SerializeField] AttackType attackType; //攻击类型（对地对空）
-    [SerializeField] int hp; //血量
     [SerializeField] List<Vector2Int> links;
+    [SerializeField] Sprite projectileSprite; //子弹图片
 
     //TODO:[SerializeField] 占地面积
     //TODO:[SerializeField] float cooldown //冷却时间，备用
@@ -25,28 +21,9 @@ public class TowerData : ScriptableObject
     {
         get { return towerIcon; }
     }
-    public int Cost
-    {
-        get { return cost; }
-    }
-
-    public int Attack
-    {
-        get { return attack; }
-    }
-
-    public float AttackInterval
-    {
-        get { return attackInterval; }
-    }
     public AttackType AttackType
     {
         get { return attackType; }
-    }
-
-    public int Hp
-    {
-        get { return hp; }
     }
     public int Id
     {
@@ -55,6 +32,10 @@ public class TowerData : ScriptableObject
     public List<Vector2Int> Links
     {
         get { return links; }
+    }
+    public Sprite ProjectileSprite
+    {
+        get { return projectileSprite; }
     }
 
 }

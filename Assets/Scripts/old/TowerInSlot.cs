@@ -21,7 +21,7 @@ public class TowerInSlot : MonoBehaviour
         towerBase = newTower;
         image = ImgGO.GetComponent<Image>();
         image.sprite = newTower.TowerIcon;
-        cost.text = "" + newTower.Cost;
+        // cost.text = "" + newTower.Cost;
         towerManager = manager;
         Debug.Log($"{newTower.name} Initialised Successfully!");
     }
