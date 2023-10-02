@@ -17,6 +17,7 @@ public class TowerObj : MonoBehaviour
     public void Init(int towerId, Vector2Int centerCrd)
     {
         this.towerId = towerId;
+        hp = 100;
         this.centerCrd = centerCrd;
         transform.localPosition = Vector3.zero;
         animator.runtimeAnimatorController = data.Animator;
