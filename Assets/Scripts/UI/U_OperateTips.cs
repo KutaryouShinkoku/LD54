@@ -10,6 +10,6 @@ public class U_OperateTips : UINode
     {
         this.gameObject.SetActive(true);
         tips.text = text;
-        animator.Play("enter");
+        animator.Play("Enter");
     }
 }

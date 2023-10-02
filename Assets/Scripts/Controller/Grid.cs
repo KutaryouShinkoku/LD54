@@ -39,6 +39,7 @@ public class Grid : MonoBehaviour
     private SpriteRenderer preview => transform.Find("preview").GetComponent<SpriteRenderer>();
     private SpriteRenderer mask => transform.Find("mask").GetComponent<SpriteRenderer>();
     public Transform towerFolder;
+    public Animator coinAnimator;
     public GameObject getEnergyEffect;
     public void Init(bool isFertile)
     {
@@ -53,9 +54,26 @@ public class Grid : MonoBehaviour
     {
         this.tower = null;
     }
+    private float addEnergyTime = 0;
+    private float timer = 0;
     private void Update()
     {
-        getEnergyEffect.SetActive(!isColonized && isFertile && tower == null);
+        bool canAddEnergy = !isColonized && isFertile && tower == null;
+        if (canAddEnergy)
+        {
+            timer += Time.deltaTime;
+            if (timer >= addEnergyTime)
+            {
+                timer = 0;
+                addEnergyTime = 4f;
+                AddEnergy();
+
+            }
+        }
+        else
+        {
+            timer = 0;
+        }
     }
 
     public void PreviewPlace(int towerId)
@@ -63,6 +81,10 @@ public class Grid : MonoBehaviour
         TowerData data = Configs.Ins.GetTower(towerId);
         preview.gameObject.SetActive(true);
         preview.sprite = data.TowerIcon;
+    }
+    public void PreviewDelete()
+    {
+        mask.gameObject.SetActive(true);
     }
     public void PreviewErrorOccupy()
     {
@@ -76,5 +98,6 @@ public class Grid : MonoBehaviour
     public void AddEnergy()
     {
         GameManager.Ins.AddEnergy(Configs.Ins.fertileIncome);
+        coinAnimator.Play("GetEnergy");
     }
 }

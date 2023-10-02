@@ -31,6 +31,7 @@ public class Configs : Singleton<Configs>
     public float towerDamage = 20f;
     [Header("敌人伤害")]
     public float enemyDamage = 20f;
+    public int cost = 50;
 
     //[SerializeField]
     //private EnemyCreatorData _enemyCreatorData;

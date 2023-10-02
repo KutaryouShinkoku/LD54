@@ -187,6 +187,7 @@ MonoBehaviour:
   hp: 0
   hitPos: {fileID: 4428669745392049303}
   hurtEffect: {fileID: 5447793888962261191}
+  sprr: {fileID: 1727644565809899760}
   crd: {x: 0, y: 0}
   progress: 0
 --- !u!95 &4991864368958374555

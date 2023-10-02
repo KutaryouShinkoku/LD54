@@ -1,24 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class BtnDelete : MonoBehaviour
+public class BtnDelete : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    public Button btnDelete;
-    // Start is called before the first frame update
-    void Start()
+
+    void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
-        btnDelete.onClick.AddListener(onClick);
+        OperateCtrl.Ins.EnterDelete();
     }
 
-    // Update is called once per frame
-    void Update()
+    void IDragHandler.OnDrag(PointerEventData eventData)
     {
-        
+        OperateCtrl.Ins.UpdateDelete();
+
     }
-    private void onClick()
+
+    void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
+        OperateCtrl.Ins.ExitDelete();
 
     }
 }

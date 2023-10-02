@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] List<TowerSlotUI> _towerSlot1;
     [SerializeField] Text _energyCount;
-    public void onRefreshEnergyCount()
+    public void Update()
     {
         _energyCount.text = "" + GameManager.Ins.energy;
     }

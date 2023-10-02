@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public EnemyData data => Configs.Ins.GetEnemy(enemyType);
     private Animator animator => GetComponent<Animator>();
     private PathInfo pathInfo => MapCtrl.Ins.GetPathById(crd.y);
+    public SpriteRenderer sprr;
     private int level = 0;
     public void Init(AttackType type, Vector2Int crd, int level)
     {
@@ -21,6 +22,7 @@ public class Enemy : MonoBehaviour
         isDead = false;
         progress = 0;
         this.level = level;
+        sprr.color = new Color(sprr.color.r, sprr.color.g, sprr.color.b, 1);
         animator.runtimeAnimatorController = data.Animator;
     }
     /// <summary>

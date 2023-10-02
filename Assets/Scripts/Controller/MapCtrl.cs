@@ -134,6 +134,7 @@ public class MapCtrl : Singleton<MapCtrl>
             grid.Occupied(tower);
         }
         GetPathByCrd(targetCrd).AddTower(tower);
+        GameManager.Ins.energy -= Configs.Ins.cost;
     }
     public void DestoryTower(TowerObj tower)
     {

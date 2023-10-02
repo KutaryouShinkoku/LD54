@@ -8,6 +8,7 @@ public enum EPreviewState
     OutOfEdge,
     CantBePlaced,
     Colonized,
+    LackEnergy,
 }
 public class OperateCtrl : Singleton<OperateCtrl>
 {
@@ -39,6 +40,9 @@ public class OperateCtrl : Singleton<OperateCtrl>
             case EPreviewState.Colonized:
                 UI.Ins.Get<U_OperateTips>().SetData("摆放位置已被入侵");
                 break;
+            case EPreviewState.LackEnergy:
+                UI.Ins.Get<U_OperateTips>().SetData("能量不足");
+                break;
         }
         ClearPreview();
     }
@@ -48,7 +52,6 @@ public class OperateCtrl : Singleton<OperateCtrl>
         List<Grid> grids = new List<Grid>();
         TowerData data = Configs.Ins.GetTower(towerId);
         Vector2Int crd = map.Pos2crd(mousePos);
-        Debug.Log(crd);
         Grid centerGrid = map.GetGrid(crd);
         if (!centerGrid)
             return;
@@ -96,6 +99,10 @@ public class OperateCtrl : Singleton<OperateCtrl>
         {
             return EPreviewState.Colonized;
         }
+        else if (GameManager.Ins.energy < Configs.Ins.cost)
+        {
+            return EPreviewState.LackEnergy;
+        }
         else
         {
             Vector2Int targetCrd = targetGrid.crd;
@@ -117,5 +124,25 @@ public class OperateCtrl : Singleton<OperateCtrl>
         }
         return EPreviewState.Access;
 
+    }
+    public void EnterDelete()
+    {
+
+    }
+    public void UpdateDelete()
+    {
+        ClearPreview();
+        Grid targetGrid = map.GetGridByPos(mousePos);
+        targetGrid?.PreviewDelete();
+        previewGrids.Add(targetGrid);
+    }
+    public void ExitDelete()
+    {
+        Grid targetGrid = map.GetGridByPos(mousePos);
+        if (targetGrid && targetGrid.tower)
+        {
+            map.DestoryTower(targetGrid.tower);
+        }
+        ClearPreview();
     }
 }
