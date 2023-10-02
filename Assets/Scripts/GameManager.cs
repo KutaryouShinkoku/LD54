@@ -6,12 +6,11 @@ public class GameManager : Singleton<GameManager>
 {
     public int round = 1;
     public int money = 0;
-    public EnemyCreatorData _enemyCreatorData;
+    public RoundData _enemyCreatorData => Configs.Ins.GetEnemyCreatorData(round);
     public void InitGame()
     {
         round = 1;
         money = 0;
-        _enemyCreatorData = Configs.Ins.GetEnemyCreatorData(round);
     }
     /// <summary>
     /// 玩家的防御设施升级状况   key: towerId, value: level
@@ -24,6 +23,13 @@ public class GameManager : Singleton<GameManager>
             return towerLevelMap[towerId];
         }
         return 0;
+    }
+    /// <summary>
+    /// 结束进攻波次
+    /// </summary>
+    public void FinishWave()
+    {
+
     }
     public void UpgradeTower(int towerId)
     {

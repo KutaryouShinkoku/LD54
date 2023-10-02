@@ -12,4 +12,8 @@ public class Projectile : MonoBehaviour
     {
         this.pathId = pathId;
     }
+    private void Update()
+    {
+        // transform.position+=
+    }
 }

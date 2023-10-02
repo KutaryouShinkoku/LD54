@@ -15,7 +15,7 @@ public class MapCtrl : Singleton<MapCtrl>
     /// <summary>
     /// 路径信息
     /// </summary>
-    private PathInfo[] paths = null;
+    public PathInfo[] paths = null;
     public Grid[,] grids = null;
     public List<TowerObj> towers = new List<TowerObj>();
     public List<Enemy> enemies = new List<Enemy>();

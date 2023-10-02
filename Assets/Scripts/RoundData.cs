@@ -1,15 +1,28 @@
 using UnityEngine;
 using System.Collections;
 
-[CreateAssetMenu(menuName = "EnemyCreator", fileName = "Add New EnemyCreator")]
-public class EnemyCreatorData : ScriptableObject
+[CreateAssetMenu(menuName = "RoundData", fileName = "new RoundData")]
+public class RoundData : ScriptableObject
 {
     [SerializeField] private int _round;
     [SerializeField] private int _minCreateTime;
     [SerializeField] private int _maxCreateTime;
-    //敌人等级占比
+    [SerializeField] private int enemyCnt;
+    /// <summary>
+    /// 本轮基础等级
+    /// </summary>
+    [SerializeField] private int _baseLevel = 1;
+    /// <summary>
+    /// 刷出baseLevel敌人的权重
+    /// </summary>
     [SerializeField] private float _lv1;
+    /// <summary>
+    /// 刷出baseLevel+1敌人的权重
+    /// </summary>
     [SerializeField] private float _lv2;
+    /// <summary>
+    /// 刷出baseLevel+2敌人的权重
+    /// </summary>
     [SerializeField] private float _lv3;
 
     public float lv1
@@ -35,6 +48,14 @@ public class EnemyCreatorData : ScriptableObject
     public int maxCreateTime
     {
         get { return _maxCreateTime; }
+    }
+    public int EnemyCnt
+    {
+        get { return enemyCnt; }
+    }
+    public int BaseLevel
+    {
+        get { return _baseLevel; }
     }
 }
 

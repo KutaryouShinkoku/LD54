@@ -11,7 +11,7 @@ public class Configs : Singleton<Configs>
     private List<EnemyData> _enemyCfg;
 
     [SerializeField]
-    private List<EnemyCreatorData> _enemyCreatorData;
+    private List<RoundData> _enemyCreatorData;
 
     [Header("敌人行进速度")]
     public float enemySpeed = 1f;
@@ -40,7 +40,7 @@ public class Configs : Singleton<Configs>
     /**
      *
      */
-    public EnemyCreatorData GetEnemyCreatorData(float round)
+    public RoundData GetEnemyCreatorData(float round)
     {
         return _enemyCreatorData.Find(o => o.round == round);
     }
