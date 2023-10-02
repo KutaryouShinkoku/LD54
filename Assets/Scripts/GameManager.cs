@@ -34,7 +34,7 @@ public class GameManager : Singleton<GameManager>
     }
     private void StartWave()
     {
-        RoundData roundData
+        RoundData roundData;
     }
     private void Update()
     {
