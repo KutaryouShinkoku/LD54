@@ -5,14 +5,19 @@ using System;
 public class Enemy : MonoBehaviour
 {
     private AttackType enemyType;
+    public float hp;
     public EnemyData data => Configs.Ins.GetEnemy(enemyType);
+    private Animator animator => GetComponent<Animator>();
+    private PathInfo pathInfo => MapCtrl.Ins.GetPathById(crd.y);
     private int level = 0;
     public void Init(AttackType type, Vector2Int crd, int level)
     {
         this.enemyType = type;
         this.crd = crd;
+        this.hp = 100;
         progress = 0;
         this.level = level;
+        animator.runtimeAnimatorController = data.Animator;
     }
     /// <summary>
     /// 敌人当前所属格子
@@ -32,6 +37,7 @@ public class Enemy : MonoBehaviour
         {
             progress = 0;
             crd += Vector2Int.left;
+            pathInfo.OnEnemyMoveNext();
         }
         transform.position = pos;
     }
@@ -41,7 +47,7 @@ public class Enemy : MonoBehaviour
     }
     public void Attacked()
     {
-
+        hp -= Configs.Ins.towerDamage;
     }
 }
 

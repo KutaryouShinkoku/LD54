@@ -9,8 +9,8 @@ public class RoundData : ScriptableObject
     /// </summary>
     [SerializeField] private float _prepareTime;
     [SerializeField] private int _round;
-    [SerializeField] private int _minCreateTime;
-    [SerializeField] private int _maxCreateTime;
+    [SerializeField] private float _minCreateTime;
+    [SerializeField] private float _maxCreateTime;
     [SerializeField] private int enemyCnt;
     /// <summary>
     /// 本轮基础等级
@@ -29,41 +29,23 @@ public class RoundData : ScriptableObject
     /// </summary>
     [SerializeField] private float _lv3;
 
-    public float lv1
-    {
-        get { return _lv1; }
-    }
-    public float lv2
-    {
-        get { return _lv2; }
-    }
-    public float lv3
-    {
-        get { return _lv3; }
-    }
-    public int round
-    {
-        get { return _round; }
-    }
-    public int minCreateTime
-    {
-        get { return _minCreateTime; }
-    }
-    public int maxCreateTime
-    {
-        get { return _maxCreateTime; }
-    }
-    public int EnemyCnt
-    {
-        get { return enemyCnt; }
-    }
-    public int BaseLevel
-    {
-        get { return _baseLevel; }
-    }
-    public float PrepareTime
-    {
-        get { return _prepareTime; }
-    }
+    public float lv1 => _lv1;
+
+    public float lv2 => _lv2;
+
+    public float lv3 => _lv3;
+
+    public int round => _round;
+
+    public float minCreateTime => _minCreateTime;
+
+    public float maxCreateTime => _maxCreateTime;
+
+    public int EnemyCnt => enemyCnt;
+
+    public int BaseLevel => _baseLevel;
+
+    public float PrepareTime => _prepareTime;
+
 }
 

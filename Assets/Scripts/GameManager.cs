@@ -7,11 +7,19 @@ public class GameManager : Singleton<GameManager>
     public int round = 1;
     public int money = 0;
     private float waveTimer = 0;
+    private bool isInPrepare = false;
     public RoundData roundData => Configs.Ins.GetEnemyCreatorData(round);
+    public EnemyCreator enemyCreator;
+    private void Start()
+    {
+        InitGame();
+    }
     public void InitGame()
     {
         round = 1;
         money = 0;
+        StartWave();
+        MapCtrl.Ins.InitMap();
     }
     /// <summary>
     /// 玩家的防御设施升级状况   key: towerId, value: level
@@ -30,15 +38,25 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public void FinishWave()
     {
-
+        round++;
+        StartWave();
     }
     private void StartWave()
     {
-        RoundData roundData
+        waveTimer = 0;
+        isInPrepare = true;
     }
     private void Update()
     {
-
+        if (!isInPrepare)
+            return;
+        if (waveTimer >= roundData.PrepareTime)
+        {
+            enemyCreator.StartCreate();
+            isInPrepare = false;
+        }
+        Debug.Log("waveTimer:" + waveTimer);
+        waveTimer += Time.deltaTime;
     }
     public void UpgradeTower(int towerId)
     {
@@ -47,5 +65,13 @@ public class GameManager : Singleton<GameManager>
             towerLevelMap[towerId]++;
         }
         EC.Send(EC.UPGRADE_TOWER);
+    }
+    public void Win()
+    {
+
+    }
+    public void Lose()
+    {
+
     }
 }

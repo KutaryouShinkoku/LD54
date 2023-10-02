@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 10
   _attack: 2
-  _enemyType: 0
+  _enemyType: 1
   _speed: 1
+  _level: 0
+  animator: {fileID: 22100000, guid: cc3fe98d141b0454fabf7b81121963a8, type: 2}

@@ -12,13 +12,13 @@ public class TowerObj : MonoBehaviour
     public PathInfo path => MapCtrl.Ins.GetPathByCrd(centerCrd);
     private float atkTimer = 0;
     private bool isInAtking = false;
-    public SpriteRenderer sprr;
+    private Animator animator => GetComponent<Animator>();
     public void Init(int towerId, Vector2Int centerCrd)
     {
         this.towerId = towerId;
         this.centerCrd = centerCrd;
         transform.localPosition = Vector3.zero;
-        this.sprr.sprite = data.TowerIcon;
+        animator.runtimeAnimatorController = data.Animator;
     }
     public void Clear()
     {
@@ -46,6 +46,8 @@ public class TowerObj : MonoBehaviour
         if (frontEnemy)
         {
             Projectile projectile = Res.Ins.projectilePrefab.OPGet().GetComponent<Projectile>();
+            projectile.transform.SetParent(MapCtrl.Ins.projectileFolder);
+            projectile.transform.position = transform.position;
             projectile.Init(path.pathId);
         }
     }
