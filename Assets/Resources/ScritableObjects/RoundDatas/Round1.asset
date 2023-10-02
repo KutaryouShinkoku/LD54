@@ -18,6 +18,6 @@ MonoBehaviour:
   _maxCreateTime: 3
   enemyCnt: 8
   _baseLevel: 1
-  _lv1: 1
-  _lv2: 0
+  _lv1: 0.8
+  _lv2: 0.2
   _lv3: 0

@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39829b8ce866f4617b11fc97978b7a47, type: 3}
   m_Name: Enemy1
   m_EditorClassIdentifier: 
-  _hp: 0
-  _attack: 0
+  _attack: 010000000200000003000000
   _enemyType: 0
-  _speed: 0
-  _level: 0
+  _speed:
+  - 1
+  - 2
+  - 3
+  _level: 1
   animator: {fileID: 9100000, guid: 7c520a0393b1043ef87b06b74466fdcf, type: 2}
