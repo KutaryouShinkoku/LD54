@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
     }
     public void Hurt()
     {
-        hurtEffect.gameObject.SetActive(true);
+        hurtEffect.Play("EnemyHurtEffect");
         hp -= Configs.Ins.towerDamage;
         if (hp <= 0)
         {
