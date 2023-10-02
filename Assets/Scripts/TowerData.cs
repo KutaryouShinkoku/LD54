@@ -15,6 +15,8 @@ public class TowerData : ScriptableObject
     [SerializeField] RuntimeAnimatorController animator;
     [SerializeField] List<int> _attack;//伤害
     [SerializeField] int _level;
+    [SerializeField] List<int> _upgradeCost;
+    [SerializeField] List<int> _buyCost;
 
     //TODO:[SerializeField] 占地面积
     //TODO:[SerializeField] float cooldown //冷却时间，备用
@@ -35,6 +37,9 @@ public class TowerData : ScriptableObject
     public List<int> attack => _attack;
 
     public int level => _level;
+
+    public List<int> upgradeCost => _upgradeCost;
+    public List<int> buyCost => _buyCost;
 
 }
 

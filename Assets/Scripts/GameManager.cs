@@ -10,26 +10,33 @@ public class GameManager : Singleton<GameManager>
     private bool isInPrepare = false;
     public RoundData roundData => Configs.Ins.GetEnemyCreatorData(round);
     public EnemyCreator enemyCreator;
+    public ETowerSlotType towerSlotType;
+
     public void AddEnergy(int energy)
     {
         this.energy += energy;
         // EC.Send(EC.UPDATE_ENERGY);
     }
+
     private void Start()
     {
         InitGame();
     }
+
     public void InitGame()
     {
         round = 1;
         energy = 0;
         StartWave();
+        towerSlotType = ETowerSlotType.buy;
         MapCtrl.Ins.InitMap();
     }
+
     /// <summary>
     /// 玩家的防御设施升级状况   key: towerId, value: level
     /// </summary>
     private Dictionary<int, int> towerLevelMap = new Dictionary<int, int>();
+
     public int GetTowerLevel(int towerId)
     {
         if (towerLevelMap.ContainsKey(towerId))
@@ -38,6 +45,7 @@ public class GameManager : Singleton<GameManager>
         }
         return 0;
     }
+
     /// <summary>
     /// 结束进攻波次
     /// </summary>
@@ -46,11 +54,13 @@ public class GameManager : Singleton<GameManager>
         round++;
         StartWave();
     }
+
     private void StartWave()
     {
         waveTimer = 0;
         isInPrepare = true;
     }
+
     private void Update()
     {
         if (!isInPrepare)
@@ -63,6 +73,7 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("waveTimer:" + waveTimer);
         waveTimer += Time.deltaTime;
     }
+
     public void UpgradeTower(int towerId)
     {
         if (towerLevelMap.ContainsKey(towerId))
@@ -71,12 +82,8 @@ public class GameManager : Singleton<GameManager>
         }
         EC.Send(EC.UPGRADE_TOWER);
     }
-    public void Win()
-    {
 
-    }
-    public void Lose()
-    {
+    public void Win() { }
 
-    }
+    public void Lose() { }
 }

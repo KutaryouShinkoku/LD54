@@ -13,6 +13,9 @@ public class Configs : Singleton<Configs>
     [SerializeField]
     private List<RoundData> _enemyCreatorData;
 
+    [SerializeField]
+    private List<TowerData> _towerData;
+
     [Header("敌人行进速度")]
     public float enemySpeed = 0.3f;
 
@@ -47,5 +50,9 @@ public class Configs : Singleton<Configs>
     public RoundData GetEnemyCreatorData(float round)
     {
         return _enemyCreatorData.Find(o => o.round == round);
+    }
+    public TowerData GetTowerData(int id)
+    {
+        return _towerData.Find(o => o.Id == id);
     }
 }

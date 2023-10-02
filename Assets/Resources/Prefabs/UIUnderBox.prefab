@@ -119,6 +119,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 689742692}
+          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+          m_MethodName: onClickChangeUpgrade
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &361158711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +218,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 55f21d969268d440bbda57e519fb2576, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b88a939be19474c869cdc356abb10942, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -244,6 +260,22 @@ MonoBehaviour:
         - m_Target: {fileID: 1067253607}
           m_TargetAssemblyTypeName: ChangeBtn, Assembly-CSharp
           m_MethodName: onSelect
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 689742692}
+          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+          m_MethodName: onClickChangeBuy
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -583,6 +615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3809579058634330232}
+  - component: {fileID: 689742692}
   m_Layer: 5
   m_Name: UIUnderBox
   m_TagString: Untagged
@@ -616,6 +649,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 86.696}
   m_SizeDelta: {x: 0, y: 173.39}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &689742692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3809579058634330233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61d9fd619e074452f9cad2622dd79379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerSlot1:
+  - {fileID: 8474176512357003460}
+  - {fileID: 9066353311997545277}
+  - {fileID: 2854680281055610859}
+  - {fileID: 1631511327859988537}
+  _energyCount: {fileID: 0}
 --- !u!1 &4538618606103249271
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,6 +991,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerSlot
       objectReference: {fileID: 0}
+    - target: {fileID: 6341646625596848708, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
+      propertyPath: _id
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6676245544257182743, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
       propertyPath: common
       value: 
@@ -978,6 +1033,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5699631199583065861, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
   m_PrefabInstance: {fileID: 2724719884835352953}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9066353311997545277 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6341646625596848708, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
+  m_PrefabInstance: {fileID: 2724719884835352953}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69e90fae2b9c47f3bc60247a3696316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3285477780753369728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1089,6 +1155,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerSlot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6341646625596848708, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
+      propertyPath: _id
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6676245544257182743, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
       propertyPath: common
       value: 
@@ -1136,6 +1206,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5699631199583065861, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
   m_PrefabInstance: {fileID: 3285477780753369728}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8474176512357003460 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6341646625596848708, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
+  m_PrefabInstance: {fileID: 3285477780753369728}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69e90fae2b9c47f3bc60247a3696316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5667292949447172733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1247,6 +1328,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerSlot (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6341646625596848708, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
+      propertyPath: _id
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6676245544257182743, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
       propertyPath: common
       value: 
@@ -1274,6 +1359,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5699631199583065861, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
   m_PrefabInstance: {fileID: 5667292949447172733}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1631511327859988537 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6341646625596848708, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
+  m_PrefabInstance: {fileID: 5667292949447172733}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69e90fae2b9c47f3bc60247a3696316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9157492685332122606 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3581408426475547027, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
@@ -1396,6 +1492,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerSlot (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6341646625596848708, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
+      propertyPath: _id
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6676245544257182743, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
       propertyPath: common
       value: 
@@ -1418,6 +1518,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
+--- !u!114 &2854680281055610859 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6341646625596848708, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
+  m_PrefabInstance: {fileID: 9196300509732994479}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69e90fae2b9c47f3bc60247a3696316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3496758095764335274 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5699631199583065861, guid: 831c23bd12cd14dd893d6a95b0f27a4f, type: 3}
