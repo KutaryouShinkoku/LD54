@@ -77,7 +77,8 @@ public class OperateCtrl : Singleton<OperateCtrl>
     }
     private void ClearPreview()
     {
-        previewGrids.ForEach(e => e.PreviewCancel());
+        previewGrids.ForEach(e => e?.PreviewCancel());
+        previewGrids.Clear();
 
     }
     private EPreviewState PreviewByMouse(int towerId)

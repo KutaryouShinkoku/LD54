@@ -132,3 +132,4 @@ MonoBehaviour:
   towerId: 0
   hp: 100
   centerCrd: {x: 0, y: 0}
+  sprr: {fileID: 7280498735502478486}

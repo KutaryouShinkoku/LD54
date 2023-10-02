@@ -11,11 +11,13 @@ public class TowerObj : MonoBehaviour
     public Vector2Int centerCrd;//攻击锚点坐标
     public PathInfo path => MapCtrl.Ins.GetPathByCrd(centerCrd);
     private float atkTimer = 0;
+    public SpriteRenderer sprr;
     public void Init(int towerId, Vector2Int centerCrd)
     {
         this.towerId = towerId;
         this.centerCrd = centerCrd;
-        transform.position = Vector3.zero;
+        transform.localPosition = Vector3.zero;
+        this.sprr.sprite = data.TowerIcon;
     }
     public void Clear()
     {

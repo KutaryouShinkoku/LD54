@@ -109,6 +109,7 @@ public class MapCtrl : Singleton<MapCtrl>
     }
     public void PlaceTower(int towerId, Vector2Int targetCrd)
     {
+        Debug.Log("place" + towerId + "at" + targetCrd);
         TowerObj tower = Res.Ins.towerPrefab.OPGet().GetComponent<TowerObj>();
         Grid targetGrid = GetGrid(targetCrd);
         tower.transform.SetParent(targetGrid.towerFolder);

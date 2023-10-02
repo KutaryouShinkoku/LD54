@@ -13107,7 +13107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
-  tips: {fileID: 0}
+  tips: {fileID: 189256521}
 --- !u!1 &425088677
 GameObject:
   m_ObjectHideFlags: 0
