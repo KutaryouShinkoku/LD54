@@ -1,8 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-//��ֹҪ��ѡ���������ı��ýű������õĻ���ռ��ɡ�
+//拖拽防御塔的交互
 public class TowerSlot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     public int towerId;

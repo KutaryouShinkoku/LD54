@@ -6,21 +6,21 @@ using UnityEngine;
 
 public class TowerData : ScriptableObject
 {
-    //��������
+    //基本数据
     [SerializeField] int id;
     [SerializeField] Sprite towerIcon;
     [SerializeField] int cost;
-    //����������
-    [SerializeField] int attack; //�����ӵ�������
-    [SerializeField] float attackInterval; //���������ʱ�䣩
-    [SerializeField] TowerAttackType attackType; //�������ͣ��Եػ��ǶԿգ�
-    [SerializeField] int hp; //Ѫ��
+    //可升级数据
+    [SerializeField] int attack; //单发伤害
+    [SerializeField] float attackInterval; //攻击间隔（秒）
+    [SerializeField] TowerAttackType attackType; //攻击类型（对地对空）
+    [SerializeField] int hp; //血量
     [SerializeField] List<Vector2Int> links;
 
-    //TODO:[SerializeField] ��ռ��������״�ȹ���
-    //TODO:[SerializeField] float cooldown //�²߻�����ȴʱ�书�ܣ���һ��������
+    //TODO:[SerializeField] 占地面积
+    //TODO:[SerializeField] float cooldown //冷却时间，备用
 
-    //-----------------------------ʹ���Կɶ�-----------------------------
+    //-----------------------------使属性可读-----------------------------
     public Sprite TowerIcon
     {
         get { return towerIcon; }
@@ -59,5 +59,5 @@ public class TowerData : ScriptableObject
 
 }
 
-//�������Ĺ�����Χ���Եء��Կա����ܴ�
+//攻击类型（对地，对空，都能打）
 public enum TowerAttackType { Ground, Air, All }
