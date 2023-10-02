@@ -13,6 +13,8 @@ public class TowerData : ScriptableObject
     [SerializeField] List<Vector2Int> links;
     [SerializeField] Sprite projectileSprite; //子弹图片
     [SerializeField] RuntimeAnimatorController animator;
+    [SerializeField] List<int> _attack;//伤害
+    [SerializeField] int _level;
 
     //TODO:[SerializeField] 占地面积
     //TODO:[SerializeField] float cooldown //冷却时间，备用
@@ -29,6 +31,10 @@ public class TowerData : ScriptableObject
     public Sprite ProjectileSprite => projectileSprite;
 
     public RuntimeAnimatorController Animator => animator;
+
+    public List<int> attack => _attack;
+
+    public int level => _level;
 
 }
 
