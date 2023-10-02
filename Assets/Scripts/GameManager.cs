@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -11,6 +12,9 @@ public class GameManager : Singleton<GameManager>
     public RoundData roundData => Configs.Ins.GetEnemyCreatorData(round);
     public EnemyCreator enemyCreator;
     public ETowerSlotType towerSlotType;
+    public Animator progressAnimator;
+    public Image progressBar;
+    public Text roundText;
 
     public void AddEnergy(int energy)
     {
@@ -52,6 +56,11 @@ public class GameManager : Singleton<GameManager>
     public void FinishWave()
     {
         round++;
+        if (round > 3)
+        {
+            Win();
+            return;
+        }
         StartWave();
     }
 
@@ -59,6 +68,8 @@ public class GameManager : Singleton<GameManager>
     {
         waveTimer = 0;
         isInPrepare = true;
+        progressAnimator.Play("Enter");
+        roundText.text = "第" + round + "波即将来临";
     }
 
     private void Update()
@@ -68,9 +79,10 @@ public class GameManager : Singleton<GameManager>
         if (waveTimer >= roundData.PrepareTime)
         {
             enemyCreator.StartCreate();
+            progressAnimator.Play("Exit");
             isInPrepare = false;
         }
-        Debug.Log("waveTimer:" + waveTimer);
+        progressBar.fillAmount = waveTimer / roundData.PrepareTime;
         waveTimer += Time.deltaTime;
     }
 
