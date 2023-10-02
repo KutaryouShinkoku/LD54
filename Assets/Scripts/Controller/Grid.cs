@@ -39,6 +39,7 @@ public class Grid : MonoBehaviour
     private SpriteRenderer preview => transform.Find("preview").GetComponent<SpriteRenderer>();
     private SpriteRenderer mask => transform.Find("mask").GetComponent<SpriteRenderer>();
     public Transform towerFolder;
+    public GameObject getEnergyEffect;
     public void Init(bool isFertile)
     {
         this.isFertile = isFertile;
@@ -51,6 +52,10 @@ public class Grid : MonoBehaviour
     public void CancelOccupied()
     {
         this.tower = null;
+    }
+    private void Update()
+    {
+        getEnergyEffect.SetActive(!isColonized && isFertile && tower == null);
     }
 
     public void PreviewPlace(int towerId)
@@ -68,5 +73,8 @@ public class Grid : MonoBehaviour
         preview.gameObject.SetActive(false);
         mask.gameObject.SetActive(false);
     }
-
+    public void AddEnergy()
+    {
+        GameManager.Ins.AddEnergy(Configs.Ins.fertileIncome);
+    }
 }

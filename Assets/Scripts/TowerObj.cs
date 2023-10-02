@@ -7,8 +7,9 @@ public class TowerObj : MonoBehaviour
     public int towerId = 0;
     public TowerData data => Configs.Ins.GetTower(towerId);
     public int level => GameManager.Ins.GetTowerLevel(towerId);
-    public int hp = 100;
+    public float hp = 100;
     public Vector2Int centerCrd;//攻击锚点坐标
+    public Transform atkPos;
     public PathInfo path => MapCtrl.Ins.GetPathByCrd(centerCrd);
     private float atkTimer = 0;
     private bool isInAtking = false;
@@ -20,10 +21,6 @@ public class TowerObj : MonoBehaviour
         transform.localPosition = Vector3.zero;
         animator.runtimeAnimatorController = data.Animator;
     }
-    public void Clear()
-    {
-        gameObject.OPPush();
-    }
     private void Update()
     {
         if (isInAtking)
@@ -32,7 +29,7 @@ public class TowerObj : MonoBehaviour
             if (atkTimer >= Configs.Ins.towerAtkInterval)
             {
                 atkTimer = 0;
-                Attack();
+                animator.SetBool("isAtking", true);
             }
         }
         else
@@ -47,12 +44,31 @@ public class TowerObj : MonoBehaviour
         {
             Projectile projectile = Res.Ins.projectilePrefab.OPGet().GetComponent<Projectile>();
             projectile.transform.SetParent(MapCtrl.Ins.projectileFolder);
-            projectile.transform.position = transform.position;
-            projectile.Init(path.pathId);
+            projectile.transform.position = atkPos.position;
+            projectile.Init(path.pathId, data.ProjectileSprite, data.AttackType);
         }
+    }
+    public void Hurt()
+    {
+        hp -= Configs.Ins.enemyDamage;
+        if (hp <= 0)
+        {
+            Die();
+        }
+    }
+    private void Die()
+    {
+        MapCtrl.Ins.DestoryTower(this);
+        animator.SetTrigger("die");
+    }
+    public void Clear()
+    {
+
+        gameObject.OPPush();
     }
     public void OnPathInfoChanged()
     {
         isInAtking = path.GetFrontEnemy(data.AttackType) != null;
+        animator.SetBool("isAtking", isInAtking);
     }
 }

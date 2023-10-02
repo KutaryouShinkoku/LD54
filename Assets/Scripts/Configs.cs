@@ -17,7 +17,7 @@ public class Configs : Singleton<Configs>
     private List<TowerData> _towerData;
 
     [Header("敌人行进速度")]
-    public float enemySpeed = 1f;
+    public float enemySpeed = 0.3f;
 
     [Header("弹幕飞行速度")]
     public float projectileSpeed = 2f;
@@ -26,9 +26,11 @@ public class Configs : Singleton<Configs>
     public float towerAtkInterval = 0.7f;
 
     [Header("丰沃土地每秒产出")]
-    public float fertileIncome = 1f;
+    public int fertileIncome = 1;
     [Header("防御塔伤害")]
     public float towerDamage = 20f;
+    [Header("敌人伤害")]
+    public float enemyDamage = 20f;
 
     //[SerializeField]
     //private EnemyCreatorData _enemyCreatorData;
