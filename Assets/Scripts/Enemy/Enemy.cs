@@ -54,7 +54,10 @@ public class Enemy : MonoBehaviour
 
         }
         transform.position = pos;
-
+        if (pos.x < map.maxLeft)
+        {
+            GameManager.Ins.Lose();
+        }
     }
     public void OnPathInfoChanged()
     {
@@ -75,6 +78,7 @@ public class Enemy : MonoBehaviour
     }
     private void Die()
     {
+        isDead = true;
         animator.SetTrigger("die");
         MapCtrl.Ins.KillEnemy(this);
     }

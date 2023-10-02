@@ -13,8 +13,8 @@ public class MapCtrl : Singleton<MapCtrl>
     private Vector2 zeroPos => leftDown.position;
     public Transform maxRightPos;
     public Transform maxLeftPos;
-    private float maxRight => maxRightPos.position.x;
-    private float maxLeft => maxLeftPos.position.x;
+    public float maxRight => maxRightPos.position.x;
+    public float maxLeft => maxLeftPos.position.x;
 
     //======================结构数据====================//
     /// <summary>
