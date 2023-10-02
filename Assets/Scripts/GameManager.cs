@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -15,6 +16,8 @@ public class GameManager : Singleton<GameManager>
     public Animator progressAnimator;
     public Image progressBar;
     public Text roundText;
+    public GameObject _uiWin;
+    public GameObject _uiLose;
 
     public void AddEnergy(int energy)
     {
@@ -24,6 +27,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        ResetGameUI();
         InitGame();
     }
 
@@ -95,7 +99,17 @@ public class GameManager : Singleton<GameManager>
         EC.Send(EC.UPGRADE_TOWER);
     }
 
-    public void Win() { }
+    public void ResetGameUI()
+    {
+        _uiWin.SetActive(false);
+        _uiLose.SetActive(false);
+    }
+    public void Win() { _uiWin.SetActive(true); }
 
-    public void Lose() { }
+    public void Lose() { _uiLose.SetActive(true); }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

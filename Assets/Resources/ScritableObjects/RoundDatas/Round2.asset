@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e98a74a13c5ff4e03a998507ecf13677, type: 3}
   m_Name: Round2
   m_EditorClassIdentifier: 
-  _prepareTime: 7
+  _prepareTime: 20
   _round: 2
   _minCreateTime: 4
   _maxCreateTime: 5
