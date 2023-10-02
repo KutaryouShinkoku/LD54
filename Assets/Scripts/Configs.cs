@@ -8,6 +8,8 @@ public class Configs : Singleton<Configs>
     private List<TowerData> towerCfg;
     [SerializeField]
     private List<EnemyData> _enemyCfg;
+    //[SerializeField]
+    //private EnemyCreatorData _enemyCreatorData;
     public TowerData GetTower(int id)
     {
         return towerCfg.Find(e => e.Id == id);
