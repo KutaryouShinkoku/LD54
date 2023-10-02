@@ -5,11 +5,16 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     public int round = 1;
-    public int money = 0;
+    public int energy = 0;
     private float waveTimer = 0;
     private bool isInPrepare = false;
     public RoundData roundData => Configs.Ins.GetEnemyCreatorData(round);
     public EnemyCreator enemyCreator;
+    public void AddEnergy(int energy)
+    {
+        this.energy += energy;
+        // EC.Send(EC.UPDATE_ENERGY);
+    }
     private void Start()
     {
         InitGame();
@@ -17,7 +22,7 @@ public class GameManager : Singleton<GameManager>
     public void InitGame()
     {
         round = 1;
-        money = 0;
+        energy = 0;
         StartWave();
         MapCtrl.Ins.InitMap();
     }

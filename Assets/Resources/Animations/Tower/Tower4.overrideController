@@ -8,4 +8,10 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Tower4
   m_Controller: {fileID: 9100000, guid: 795cce0cab2c04f98b37d789c523cb05, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 32a463acafef74ae99d86b1821caaa50, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 47a1452c70a7b40f4a5abe35cbf97a29, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c5dbc429ba64f40248d4e1c47dc89aa5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 64101e548cb6848c397ef32bd06f55b3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 15da2c73e688346fd8a384dd58781dca, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 15da2c73e688346fd8a384dd58781dca, type: 2}

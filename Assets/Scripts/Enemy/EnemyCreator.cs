@@ -84,7 +84,7 @@ public class EnemyCreator : MonoBehaviour
         }
         Enemy enemyScript = enemy.GetComponent<Enemy>();
         enemyScript.Init(
-            Random.Range(0, 1) > 0.5 ? AttackType.Air : AttackType.Ground,
+            Random.Range(0, 1f) > 0.5 ? AttackType.Air : AttackType.Ground,
             new Vector2Int(MapCtrl.Ins.width - 1, pathIds[Random.Range(0, pathIds.Count)]), level);
         MapCtrl.Ins.AddEnemy(enemyScript);
 

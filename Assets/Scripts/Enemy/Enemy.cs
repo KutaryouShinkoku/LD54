@@ -6,6 +6,9 @@ public class Enemy : MonoBehaviour
 {
     private AttackType enemyType;
     public float hp;
+    public Transform hitPos;
+    public Animator hurtEffect;
+    private bool isDead = false;
     public EnemyData data => Configs.Ins.GetEnemy(enemyType);
     private Animator animator => GetComponent<Animator>();
     private PathInfo pathInfo => MapCtrl.Ins.GetPathById(crd.y);
@@ -15,6 +18,7 @@ public class Enemy : MonoBehaviour
         this.enemyType = type;
         this.crd = crd;
         this.hp = 100;
+        isDead = false;
         progress = 0;
         this.level = level;
         animator.runtimeAnimatorController = data.Animator;
@@ -29,34 +33,58 @@ public class Enemy : MonoBehaviour
     public float progress;
     private MapCtrl map => MapCtrl.Ins;
     public Vector2 pos => Vector2.Lerp(map.Crd2Pos(crd), map.Crd2Pos(crd + Vector2Int.left), progress);
-
     void Update()
     {
+        if (isDead)
+            return;
         if (pathInfo.frontTower != null && crd.x - 1 == pathInfo.frontTower.centerCrd.x)
         {
-
+            animator.SetBool("isAtking", true);
         }
-        progress += Time.deltaTime * Configs.Ins.enemySpeed;
-        if (progress >= 1)
+        else
         {
-            progress = 0;
-            crd += Vector2Int.left;
-            pathInfo.OnEnemyMoveNext();
+            animator.SetBool("isAtking", false);
+            progress += Time.deltaTime * Configs.Ins.enemySpeed;
+            if (progress >= 1)
+            {
+                progress = 0;
+                crd += Vector2Int.left;
+                pathInfo.OnEnemyMoveNext();
+            }
+
         }
         transform.position = pos;
 
     }
     public void OnPathInfoChanged()
     {
+        if (pathInfo.frontTower != null && crd.x - 1 == pathInfo.frontTower.centerCrd.x)
+        {
+            animator.SetBool("isAtking", true);
+        }
 
     }
     public void Hurt()
     {
+        hurtEffect.gameObject.SetActive(true);
         hp -= Configs.Ins.towerDamage;
+        if (hp <= 0)
+        {
+            Die();
+        }
+    }
+    private void Die()
+    {
+        animator.SetTrigger("die");
+        MapCtrl.Ins.KillEnemy(this);
+    }
+    public void Clear()
+    {
+        gameObject.OPPush();
     }
     public void Attack()
     {
-        pathInfo.frontTower.Hurt();
+        pathInfo.frontTower?.Hurt();
     }
 }
 

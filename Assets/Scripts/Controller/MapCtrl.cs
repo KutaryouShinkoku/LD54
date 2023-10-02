@@ -160,6 +160,7 @@ public class MapCtrl : Singleton<MapCtrl>
     }
     public void KillEnemy(Enemy enemy)
     {
+        GetPathByCrd(enemy.crd).RemoveEnemy(enemy);
 
     }
 }
