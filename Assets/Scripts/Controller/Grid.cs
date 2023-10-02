@@ -4,14 +4,48 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-    public bool isFertile = false;
-    public bool isOccupy = false;
+    private bool _isFertile = false;
+    public bool isFertile
+    {
+        get => _isFertile;
+        set
+        {
+            _isFertile = value;
+        }
+    }
+    private TowerInfo _tower = null;
+    public TowerInfo tower
+    {
+        get => _tower;
+        set
+        {
+            _tower = value;
+        }
+    }
+    private bool _isColonized = false;
+    public bool isColonized
+    {
+        get => _isColonized;
+        set
+        {
+            _isColonized = value;
+        }
+    }
     public Vector2Int crd;
+    private SpriteRenderer gridSprite => transform.Find("gridSprite").GetComponent<SpriteRenderer>();
+    private SpriteRenderer preview => transform.Find("preview").GetComponent<SpriteRenderer>();
     public void Init(bool isFertile)
     {
         this.isFertile = isFertile;
         gridSprite.sprite = isFertile ? Res.Ins.fertileGridSprite : Res.Ins.poorGridSprite;
     }
-    private SpriteRenderer gridSprite => transform.Find("gridSprite").GetComponent<SpriteRenderer>();
-    private SpriteRenderer preview => transform.Find("preview").GetComponent<SpriteRenderer>();
+    public void Occupied(TowerInfo info)
+    {
+        this.tower = info;
+    }
+    public void CancelOccupied()
+    {
+        this.tower = null;
+    }
+
 }

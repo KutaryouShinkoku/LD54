@@ -1,7 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum EPreviewState
+{
+    Access,
+    Occupied,
+    OutOfEdge,
+}
 public class OperateCtrl : Singleton<OperateCtrl>
 {
     private MapCtrl map => MapCtrl.Ins;
@@ -24,20 +29,29 @@ public class OperateCtrl : Singleton<OperateCtrl>
         }
         else
         {
+            Vector2Int targetCrd = targetGrid.crd;
             TowerData data = Configs.Ins.GetTower(towerId);
             List<Vector2Int> crdList = data.Links;
-            // for (int i = 0; i < crdList.Count; i++)
-            // {
-            //     Grid grid = GetGrid(targetCrd + crdList[i]);
-            //     if (!grid)
-            //         return false;
-            //     else if (grid.isOccupy)
-            //         return false;
-            // }
+            for (int i = 0; i < crdList.Count; i++)
+            {
+                Grid grid = map.GetGrid(targetCrd + crdList[i]);
+                if (!grid)
+                {
+                    UI.Ins.Get<U_OperateTips>().SetData("摆放出界");
+                }
+                else if (grid.tower != null)
+                {
+                    UI.Ins.Get<U_OperateTips>().SetData("摆放位置已被占用");
+                }
+                else
+                {
+                    map.PlaceTower(towerId, targetCrd);
+                }
+            }
         }
-
     }
     public void UpdatePlace(int towerId)
     {
+
     }
 }

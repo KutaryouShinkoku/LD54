@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class U_OperateTips : UINode
 {
-    public GameObject root;
     public Text tips;
     private Animator animator => GetComponent<Animator>();
     public void SetData(string text)

@@ -53,6 +53,14 @@ public class MapCtrl : Singleton<MapCtrl>
         Vector2 diff = pos - zeroPos;
         return new Vector2Int(Mathf.RoundToInt(diff.x / gridSize.x), Mathf.RoundToInt(diff.y / gridSize.y));
     }
+    public Vector2 Crd2Pos(Vector2Int crd)
+    {
+        return zeroPos + new Vector2(crd.x * gridSize.x, crd.y * gridSize.y);
+    }
+    public Vector2 SnappedPos(Vector2 pos)
+    {
+        return Crd2Pos(Pos2crd(pos));
+    }
     public Grid GetGrid(Vector2Int crd)
     {
         if (!ValidCrd(crd))
@@ -69,5 +77,34 @@ public class MapCtrl : Singleton<MapCtrl>
     public Grid GetGridByPos(Vector2 pos)
     {
         return GetGrid(Pos2crd(pos));
+    }
+    public void PlaceTower(int towerId, Vector2Int targetCrd)
+    {
+        TowerInfo tower = new TowerInfo(towerId, GameManager.Ins.towerLevelMap[towerId]);
+        List<Vector2Int> crdList = tower.data.Links;
+        for (int i = 0; i < crdList.Count; i++)
+        {
+            Grid grid = GetGrid(targetCrd + crdList[i]);
+            grid.Occupied(tower);
+        }
+    }
+    public void RemoveTower(int towerId, Vector2Int targetCrd)
+    {
+        TowerData data = Configs.Ins.GetTower(towerId);
+
+        List<Vector2Int> crdList = data.Links;
+        for (int i = 0; i < crdList.Count; i++)
+        {
+            Grid grid = GetGrid(targetCrd + crdList[i]);
+            grid.CancelOccupied();
+        }
+    }
+    public void PlaceEnemy()
+    {
+
+    }
+    public void RemoveEnemy()
+    {
+
     }
 }

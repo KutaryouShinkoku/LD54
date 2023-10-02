@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Grid
+    uniqueID: 1169567393
+    locked: 0
+  - name: Tower
+    uniqueID: 3678876181
+    locked: 0
+  - name: SceneUI
+    uniqueID: 3616829135
+    locked: 0

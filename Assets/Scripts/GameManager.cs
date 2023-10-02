@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     public int round = 1;
     public int money = 0;
@@ -11,4 +11,8 @@ public class GameManager : MonoBehaviour
         round = 1;
         money = 0;
     }
+    /// <summary>
+    /// 玩家的防御设施升级状况   key: towerId, value: level
+    /// </summary>
+    public Dictionary<int, int> towerLevelMap = new Dictionary<int, int>();
 }
