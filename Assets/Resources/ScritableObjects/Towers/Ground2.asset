@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ground2
   m_EditorClassIdentifier: Assembly-CSharp::TowerBase
   id: 2
-  towerIcon: {fileID: 21300000, guid: 248611cc7bb8d85448933cee393ce41e, type: 3}
+  towerIcon: {fileID: 21300000, guid: 15c9ea16946f5f4489de21516125828b, type: 3}
   cost: 0
   attack: 0
   attackInterval: 0

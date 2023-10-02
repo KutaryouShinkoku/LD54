@@ -31,7 +31,10 @@ public class MapCtrl : Singleton<MapCtrl>
         }
         return null;
     }
-
+    private void Start()
+    {
+        InitMap();
+    }
     [UnityEditor.MenuItem("Map/Generate")]
     public static void GenerateMap()
     {
@@ -42,6 +45,8 @@ public class MapCtrl : Singleton<MapCtrl>
         ClearMap();
         grids = new Grid[width, height];
         paths = new PathInfo[height - 2];
+        towers = new List<TowerObj>();
+        enemies = new List<Enemy>();
         for (int j = 0; j < height; j++)
         {
             bool isFertile = !(j == 0 || j == height - 1);
@@ -104,31 +109,29 @@ public class MapCtrl : Singleton<MapCtrl>
     }
     public void PlaceTower(int towerId, Vector2Int targetCrd)
     {
-        TowerInfo tower = new TowerInfo(towerId, GameManager.Ins.towerLevelMap[towerId]);
+        TowerObj tower = Res.Ins.towerPrefab.OPGet().GetComponent<TowerObj>();
+        Grid targetGrid = GetGrid(targetCrd);
+        tower.transform.SetParent(targetGrid.towerFolder);
+        tower.Init(towerId, targetCrd);
         List<Vector2Int> crdList = tower.data.Links;
         for (int i = 0; i < crdList.Count; i++)
         {
             Grid grid = GetGrid(targetCrd + crdList[i]);
             grid.Occupied(tower);
         }
+        GetPathByCrd(targetCrd).AddTower(tower);
     }
-    public void RemoveTower(int towerId, Vector2Int targetCrd)
+    public void DestoryTower(TowerObj tower)
     {
-        TowerData data = Configs.Ins.GetTower(towerId);
+        GetPathByCrd(tower.centerCrd).RemoveTower(tower);
 
-        List<Vector2Int> crdList = data.Links;
+        List<Vector2Int> crdList = tower.data.Links;
         for (int i = 0; i < crdList.Count; i++)
         {
-            Grid grid = GetGrid(targetCrd + crdList[i]);
+            Grid grid = GetGrid(tower.centerCrd + crdList[i]);
             grid.CancelOccupied();
         }
-    }
-    public void PlaceEnemy()
-    {
-
-    }
-    public void RemoveEnemy()
-    {
+        tower.gameObject.OPPush();
 
     }
 }
