@@ -16,6 +16,8 @@ public class Configs : Singleton<Configs>
     public float towerAtkInterval = 0.7f;
     [Header("丰沃土地每秒产出")]
     public float fertileIncome = 1f;
+    //[SerializeField]
+    //private EnemyCreatorData _enemyCreatorData;
     public TowerData GetTower(int id)
     {
         return towerCfg.Find(e => e.Id == id);
