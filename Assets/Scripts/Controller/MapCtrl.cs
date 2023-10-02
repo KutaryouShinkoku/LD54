@@ -31,6 +31,16 @@ public class MapCtrl : Singleton<MapCtrl>
         }
         return null;
     }
+    public PathInfo GetPathById(int pathId)
+    {
+        for (int i = 0; i < paths.Length; i++)
+        {
+            if (paths[i].pathId == pathId)
+                return paths[i];
+
+        }
+        return null;
+    }
     private void Start()
     {
         InitMap();
@@ -133,6 +143,20 @@ public class MapCtrl : Singleton<MapCtrl>
             grid.CancelOccupied();
         }
         tower.gameObject.OPPush();
+
+    }
+    /// <summary>
+    /// 添加生成的敌人
+    /// </summary>
+    /// <param name="enemy"></param>
+    /// <param name="pathId">第几路，范围1～4</param>
+    public void AddEnemy(Enemy enemy)
+    {
+        enemies.Add(enemy);
+        GetPathByCrd(enemy.crd).AddEnemy(enemy);
+    }
+    public void KillEnemy(Enemy enemy)
+    {
 
     }
 }

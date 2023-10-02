@@ -21,7 +21,7 @@ public class TowerObj : MonoBehaviour
     }
     public void Clear()
     {
-        this.gameObject.OPPush();
+        gameObject.OPPush();
     }
     private void Update()
     {

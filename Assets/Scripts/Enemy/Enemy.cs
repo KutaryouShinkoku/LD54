@@ -6,9 +6,13 @@ public class Enemy : MonoBehaviour
 {
     private AttackType enemyType;
     public EnemyData data => Configs.Ins.GetEnemy(enemyType);
-    public void Init(AttackType type)
+    private int level = 0;
+    public void Init(AttackType type, Vector2Int crd, int level)
     {
         this.enemyType = type;
+        this.crd = crd;
+        progress = 0;
+        this.level = level;
     }
     /// <summary>
     /// 敌人当前所属格子
