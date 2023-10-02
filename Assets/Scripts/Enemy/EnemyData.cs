@@ -8,7 +8,7 @@ public class EnemyData : ScriptableObject
 
     [SerializeField] private int _hp;
     [SerializeField] private int _attack;
-    [SerializeField] private EEnemyType _enemyType;
+    [SerializeField] private AttackType _enemyType;
     [SerializeField] private float _speed;
     [SerializeField] private int _level;
 
@@ -20,7 +20,7 @@ public class EnemyData : ScriptableObject
     {
         get { return _attack; }
     }
-    public EEnemyType enemyType
+    public AttackType enemyType
     {
         get { return _enemyType; }
     }
@@ -35,4 +35,3 @@ public class EnemyData : ScriptableObject
 
 
 }
-public enum EEnemyType { enemy };

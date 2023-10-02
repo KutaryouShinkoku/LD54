@@ -10,7 +10,28 @@ public class MapCtrl : Singleton<MapCtrl>
     public Transform leftDown;
     public Transform gridFolder;
     private Vector2 zeroPos => leftDown.position;
+
+    //======================结构数据====================//
+    /// <summary>
+    /// 路径信息
+    /// </summary>
+    private PathInfo[] paths = null;
     public Grid[,] grids = null;
+    public List<TowerObj> towers = new List<TowerObj>();
+    public List<Enemy> enemies = new List<Enemy>();
+    //=================================================//
+    public PathInfo GetPathByCrd(Vector2Int crd)
+    {
+        for (int i = 0; i < paths.Length; i++)
+        {
+            if (crd.y == paths[i].pathId)
+            {
+                return paths[i];
+            }
+        }
+        return null;
+    }
+
     [UnityEditor.MenuItem("Map/Generate")]
     public static void GenerateMap()
     {
@@ -20,11 +41,14 @@ public class MapCtrl : Singleton<MapCtrl>
     {
         ClearMap();
         grids = new Grid[width, height];
-        for (int i = 0; i < width; i++)
+        paths = new PathInfo[height - 2];
+        for (int j = 0; j < height; j++)
         {
-            for (int j = 0; j < height; j++)
+            bool isFertile = !(j == 0 || j == height - 1);
+            if (isFertile)
+                paths[j - 1] = new PathInfo(j, width - 1);
+            for (int i = 0; i < width; i++)
             {
-                bool isFertile = !(j == 0 || j == height - 1);
                 GameObject grid = Res.Ins.gridPrefab.OPGet();
                 grid.transform.SetParent(gridFolder);
                 grid.transform.position = leftDown.position + new Vector3(i * gridSize.x, j * gridSize.y, 0);

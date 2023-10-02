@@ -21,5 +21,6 @@ public class GameManager : Singleton<GameManager>
         {
             towerLevelMap[towerId]++;
         }
+        EC.Send(EC.UPGRADE_TOWER);
     }
 }

@@ -7,15 +7,15 @@ public delegate void ECListener(string args);
 public static class EC
 {
 	//======================= Event Key Const ===========================//
-	
-	
+	public const string UPGRADE_TOWER = "UPGRADE_TOWER";
+
 	//===================================================================//
 
 
 	private static Object agent = new Object();
 
-    private static Dictionary<string, Dictionary<object, List<ECListener>>> msgMap = new Dictionary<string, Dictionary<object, List<ECListener>>>();
-    private static Dictionary<string, Dictionary<object, List<Action>>> actMap = new Dictionary<string, Dictionary<object, List<Action>>>();
+	private static Dictionary<string, Dictionary<object, List<ECListener>>> msgMap = new Dictionary<string, Dictionary<object, List<ECListener>>>();
+	private static Dictionary<string, Dictionary<object, List<Action>>> actMap = new Dictionary<string, Dictionary<object, List<Action>>>();
 
 	public static void On(this object obj, string key, ECListener evt)
 	{
@@ -23,7 +23,7 @@ public static class EC
 		{
 			if (!msgMap[key].ContainsKey(obj))
 			{
-				msgMap[key].Add(obj, new List<ECListener>{evt});
+				msgMap[key].Add(obj, new List<ECListener> { evt });
 				return;
 			}
 			if (!msgMap[key][obj].Contains(evt))
@@ -42,11 +42,11 @@ public static class EC
 	}
 	public static void On(string key, Action act)
 	{
-		agent.On(key,act);
+		agent.On(key, act);
 	}
 	public static void On(string key, ECListener evt)
 	{
-		agent.On(key,evt);
+		agent.On(key, evt);
 	}
 	public static void On(this object obj, string key, Action act)
 	{
@@ -54,7 +54,7 @@ public static class EC
 		{
 			if (!actMap[key].ContainsKey(obj))
 			{
-				actMap[key].Add(obj, new List<Action>{act});
+				actMap[key].Add(obj, new List<Action> { act });
 				return;
 			}
 			if (!actMap[key][obj].Contains(act))
@@ -88,11 +88,11 @@ public static class EC
 	}
 	public static void Off(string key, ECListener evt)
 	{
-		agent.Off(key,evt);
+		agent.Off(key, evt);
 	}
 	public static void Off(string key, Action act)
 	{
-		agent.Off(key,act);
+		agent.Off(key, act);
 	}
 
 	public static void Off(this object obj, string key)
@@ -107,42 +107,42 @@ public static class EC
 		}
 	}
 
-	public static void Send(string key,string args = null)
-    {
-        if (args == null)
-        {
-            if (actMap.ContainsKey(key) )
-            {
-                foreach (List<Action> list in actMap[key].Values)
-                {
-                    list.ForEach(e => e.Invoke());
-                }
-            }
-        }
-        else
-        {
+	public static void Send(string key, string args = null)
+	{
+		if (args == null)
+		{
+			if (actMap.ContainsKey(key))
+			{
+				foreach (List<Action> list in actMap[key].Values)
+				{
+					list.ForEach(e => e.Invoke());
+				}
+			}
+		}
+		else
+		{
 			UnityEngine.Debug.Log("send");
-            if (msgMap.ContainsKey(key))
-            {
-                foreach (List<ECListener> list in msgMap[key].Values)
-                {
-                    list.ForEach(e => e.Invoke(args));
-                }
-            }
-        }
+			if (msgMap.ContainsKey(key))
+			{
+				foreach (List<ECListener> list in msgMap[key].Values)
+				{
+					list.ForEach(e => e.Invoke(args));
+				}
+			}
+		}
 	}
 
-	public static void Send(this object obj, string key,string args= null)
+	public static void Send(this object obj, string key, string args = null)
 	{
 		if (msgMap.ContainsKey(key) && msgMap[key].ContainsKey(obj))
 		{
-			msgMap[key][obj].ForEach(e=>e.Invoke(args));
+			msgMap[key][obj].ForEach(e => e.Invoke(args));
 		}
-		if (actMap.ContainsKey(key)&&args==null)
+		if (actMap.ContainsKey(key) && args == null)
 		{
 			foreach (List<Action> list in actMap[key].Values)
 			{
-                list.ForEach(e=>e.Invoke());
+				list.ForEach(e => e.Invoke());
 			}
 		}
 	}
