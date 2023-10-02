@@ -32,6 +32,10 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        if (pathInfo.frontTower != null && crd.x - 1 == pathInfo.frontTower.centerCrd.x)
+        {
+
+        }
         progress += Time.deltaTime * Configs.Ins.enemySpeed;
         if (progress >= 1)
         {
@@ -40,14 +44,19 @@ public class Enemy : MonoBehaviour
             pathInfo.OnEnemyMoveNext();
         }
         transform.position = pos;
+
     }
     public void OnPathInfoChanged()
     {
 
     }
-    public void Attacked()
+    public void Hurt()
     {
         hp -= Configs.Ins.towerDamage;
+    }
+    public void Attack()
+    {
+        pathInfo.frontTower.Hurt();
     }
 }
 

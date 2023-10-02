@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour
         {
             if (enemy)
             {
-                enemy.Attacked();
+                enemy.Hurt();
             }
             gameObject.OPPush();
         }

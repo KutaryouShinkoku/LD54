@@ -121,5 +121,6 @@ public class PathInfo
     /// 最前线的敌人的x坐标
     /// </summary>
     public int frontLine => enemies.Count == 0 ? maxRight : enemies[0].crd.x;
+    public TowerObj frontTower => towers.Count == 0 ? null : towers[0];
 
 }
