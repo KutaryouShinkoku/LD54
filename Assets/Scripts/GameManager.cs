@@ -15,4 +15,11 @@ public class GameManager : Singleton<GameManager>
     /// 玩家的防御设施升级状况   key: towerId, value: level
     /// </summary>
     public Dictionary<int, int> towerLevelMap = new Dictionary<int, int>();
+    public void UpgradeTower(int towerId)
+    {
+        if (towerLevelMap.ContainsKey(towerId))
+        {
+            towerLevelMap[towerId]++;
+        }
+    }
 }
