@@ -9,7 +9,12 @@ public class MapCtrl : Singleton<MapCtrl>
     public Vector2 gridSize = new Vector2(20, 20);
     public Transform leftDown;
     public Transform gridFolder;
+    public Transform projectileFolder;
     private Vector2 zeroPos => leftDown.position;
+    public Transform maxRightPos;
+    public Transform maxLeftPos;
+    private float maxRight => maxRightPos.position.x;
+    private float maxLeft => maxLeftPos.position.x;
 
     //======================结构数据====================//
     /// <summary>
@@ -41,10 +46,6 @@ public class MapCtrl : Singleton<MapCtrl>
         }
         return null;
     }
-    private void Start()
-    {
-        InitMap();
-    }
     [UnityEditor.MenuItem("Map/Generate")]
     public static void GenerateMap()
     {
@@ -64,6 +65,8 @@ public class MapCtrl : Singleton<MapCtrl>
                 paths[j - 1] = new PathInfo(j, width - 1);
             for (int i = 0; i < width; i++)
             {
+                if (i > width - 3)
+                    isFertile = false;
                 GameObject grid = Res.Ins.gridPrefab.OPGet();
                 grid.transform.SetParent(gridFolder);
                 grid.transform.position = leftDown.position + new Vector3(i * gridSize.x, j * gridSize.y, 0);

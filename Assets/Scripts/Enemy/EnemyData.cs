@@ -6,32 +6,22 @@ using UnityEngine;
 public class EnemyData : ScriptableObject
 {
 
-    [SerializeField] private int _hp;
     [SerializeField] private int _attack;
     [SerializeField] private AttackType _enemyType;
     [SerializeField] private float _speed;
     [SerializeField] private int _level;
+    [SerializeField] private RuntimeAnimatorController animator;
 
-    public int hp
-    {
-        get { return _hp; }
-    }
-    public int attack
-    {
-        get { return _attack; }
-    }
-    public AttackType enemyType
-    {
-        get { return _enemyType; }
-    }
-    public float speed
-    {
-        get { return _speed; }
-    }
-    public int level
-    {
-        get { return _level; }
-    }
+
+    public int attack => _attack;
+
+    public AttackType enemyType => _enemyType;
+
+    public float speed => _speed;
+
+    public int level => _level;
+    public RuntimeAnimatorController Animator => animator;
+
 
 
 }

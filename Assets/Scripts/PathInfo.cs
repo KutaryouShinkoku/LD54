@@ -16,6 +16,25 @@ public class PathInfo
     /// 最远处的x坐标
     /// </summary>
     private int _maxRight;
+    public List<Grid> grids
+    {
+        get
+        {
+            Grid[,] allGrids = MapCtrl.Ins.grids;
+            List<Grid> res = new List<Grid>();
+            for (int i = 0; i < allGrids.GetLength(0); i++)
+            {
+                for (int j = 0; j < allGrids.GetLength(1); j++)
+                {
+                    if (allGrids[i, j].crd.y == pathId)
+                    {
+                        res.Add(allGrids[i, j]);
+                    }
+                }
+            }
+            return res;
+        }
+    }
     public int maxRight => _maxRight;
     /// <summary>
     /// 该路径所在的y坐标
@@ -78,6 +97,16 @@ public class PathInfo
     {
         towers.ForEach(e => e.OnPathInfoChanged());
         enemies.ForEach(e => e.OnPathInfoChanged());
+        grids.ForEach(e => e.isColonized = IsInColonized(e.crd));
+    }
+    public bool IsInColonized(Vector2Int crd)
+    {
+        return frontLine <= crd.x;
+    }
+    public void OnEnemyMoveNext()
+    {
+        grids.ForEach(e => e.isColonized = IsInColonized(e.crd));
+
     }
 
     /// <summary>

@@ -42,6 +42,7 @@ public class EnemyCreator : MonoBehaviour
             return;
         if (time < 0)
         {
+            Debug.Log("update");
             GenerateEnemy();
             enemyRemain--;
             time = Random.Range(_enemyCreatorData.minCreateTime, _enemyCreatorData.maxCreateTime);
@@ -61,7 +62,6 @@ public class EnemyCreator : MonoBehaviour
         //生成敌人 
         GameObject enemy = Res.Ins.enemyPrefab.OPGet();
         enemy.transform.SetParent(creatorRoot);
-        Enemy enemyScript = enemy.GetComponent<Enemy>();
         List<int> pathIds = new List<int>();
         for (int i = 0; i < MapCtrl.Ins.paths.Length; i++)
         {
@@ -82,9 +82,8 @@ public class EnemyCreator : MonoBehaviour
         {
             level = _enemyCreatorData.BaseLevel + 2;
         }
+        Enemy enemyScript = enemy.GetComponent<Enemy>();
         enemyScript.Init(Random.Range(0, 1) > 0.5 ? AttackType.Air : AttackType.Ground, new Vector2Int(MapCtrl.Ins.width - 1, pathIds[Random.Range(0, pathIds.Count)]), level);
-        //int level = 
-        //enemyScript.Init(AttackType.All, _creatorRoot, 3);
         MapCtrl.Ins.AddEnemy(enemyScript);
 
     }

@@ -24,6 +24,8 @@ public class Configs : Singleton<Configs>
 
     [Header("丰沃土地每秒产出")]
     public float fertileIncome = 1f;
+    [Header("防御塔伤害")]
+    public float towerDamage = 20f;
 
     //[SerializeField]
     //private EnemyCreatorData _enemyCreatorData;

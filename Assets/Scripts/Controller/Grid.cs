@@ -30,8 +30,10 @@ public class Grid : MonoBehaviour
         set
         {
             _isColonized = value;
+            gridSprite.sprite = _isColonized ? Res.Ins.colonizedSprite : defaultSprite;
         }
     }
+    private Sprite defaultSprite => isFertile ? Res.Ins.fertileGridSprite : Res.Ins.poorGridSprite;
     public Vector2Int crd;
     private SpriteRenderer gridSprite => transform.Find("gridSprite").GetComponent<SpriteRenderer>();
     private SpriteRenderer preview => transform.Find("preview").GetComponent<SpriteRenderer>();
@@ -50,7 +52,6 @@ public class Grid : MonoBehaviour
     {
         this.tower = null;
     }
-
 
     public void PreviewPlace(int towerId)
     {
