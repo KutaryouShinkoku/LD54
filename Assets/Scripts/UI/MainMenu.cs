@@ -8,10 +8,9 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject _uICredits;
     [SerializeField] GameObject _uISettings;
-    [SerializeField] Slider _volumeSlider;
+    
 
     private bool isSettingOpen;
-    public float volumeValue;
 
     public void Start()
     {
@@ -40,7 +39,6 @@ public class MainMenu : MonoBehaviour
     //打开或关闭设置
     public void ShowSettings()
     {
-        _volumeSlider.value = volumeValue;
         if (isSettingOpen == true)
         {
             _uISettings.SetActive(false);
@@ -50,26 +48,8 @@ public class MainMenu : MonoBehaviour
         {
             _uISettings.SetActive(true);
             isSettingOpen = true;
-            //SaveVolume();
         }
     }
-    //调节音量,有需要再加
-    //public void VolumeSlider(float volume)
-    //{
-    //    volumeValue = volume;
-    //}
 
-    //public void SaveVolume()
-    //{
-    //    volumeValue = _volumeSlider.value;
-    //    PlayerPrefs.SetFloat("VolumeValue", volumeValue);
-    //    LoadValues();
-    //}
 
-    //public void LoadValues()
-    //{
-    //    volumeValue = PlayerPrefs.GetFloat("VolumeValue");
-    //    _volumeSlider.value = volumeValue;
-    //    AudioListener.volume = volumeValue;
-    //}
 }
