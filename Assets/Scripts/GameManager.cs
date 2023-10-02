@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
     private bool isInPrepare = false;
     public RoundData roundData => Configs.Ins.GetEnemyCreatorData(round);
     public EnemyCreator enemyCreator;
+    public ETowerSlotType towerSlotType;
     private void Start()
     {
         InitGame();
@@ -19,6 +20,7 @@ public class GameManager : Singleton<GameManager>
         round = 1;
         money = 0;
         StartWave();
+        towerSlotType = ETowerSlotType.buy;
         MapCtrl.Ins.InitMap();
     }
     /// <summary>
