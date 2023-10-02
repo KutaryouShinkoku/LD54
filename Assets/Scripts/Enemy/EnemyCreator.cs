@@ -6,9 +6,10 @@ public class EnemyCreator : MonoBehaviour
 {
 
     [SerializeField]
-    public Transform _creatorRoot;
-    public int _round;
-    public EnemyCreatorData _enemyCreatorData;
+    public Transform creatorRoot;
+    private int _round;
+    private EnemyCreatorData _enemyCreatorData;
+    //public int 
     // Use this for initialization
     void Start()
     {
@@ -29,16 +30,17 @@ public class EnemyCreator : MonoBehaviour
 
             //生成敌人 
             GameObject enemy = Res.Ins.enemyPrefab.OPGet();
-            enemy.transform.SetParent(_creatorRoot);
+            enemy.transform.SetParent(creatorRoot);
             Enemy enemyScript = enemy.GetComponent<Enemy>();
-            enemyScript.onInit(Configs.Ins.getEnemy(EEnemyType.enemy);
-            MapCtrl.Ins.AddEnemy(enemy);
+            //int level = 
+            //enemyScript.Init(AttackType.All, _creatorRoot, 3);
+            MapCtrl.Ins.AddEnemy(enemyScript);
             _isCreated = true;
             time = Random.Range(_enemyCreatorData.minCreateTime, _enemyCreatorData.maxCreateTime);
-        }
+        }       
         else
         {
-            time -= Time.deltaTime; 
+            time -= Time.deltaTime;
         }
 
     }
