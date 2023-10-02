@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prepareTime: 1
   _round: 1
-  _minCreateTime: 2
-  _maxCreateTime: 3
+  _minCreateTime: 4
+  _maxCreateTime: 6
   enemyCnt: 8
   _baseLevel: 1
   _lv1: 0.8

@@ -16,16 +16,18 @@ public class TowerSlotUI : MonoBehaviour
 
     public void onRefresh()
     {
-        // switch (GameManager.Ins.towerSlotType)
-        // {
-        //     case ETowerSlotType.buy:
-        //         _cost.text = "" + _towerData.buyCost[_level];
+        Debug.Log(_towerData);
+        switch (GameManager.Ins.towerSlotType)
+        {
+            case ETowerSlotType.buy:
+                // _cost.text = "" + _towerData.buyCost[_level];
+                _cost.text = "" + Configs.Ins.cost;
 
-        //         break;
-        //     case ETowerSlotType.upgrade:
-        //         _cost.text = "" + _towerData.upgradeCost[_level];
-        //         break;
-        // }
+                break;
+            case ETowerSlotType.upgrade:
+                _cost.text = "" + Configs.Ins.cost;
+                break;
+        }
 
     }
 }
