@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TowerSlotGrp : MonoBehaviour
 {
-    public static bool dragMode = false;
+    public static bool dragMode;
     [SerializeField] List<TowerSlot> towerSlots;
     [SerializeField] Text _energyCount;
     private TowerSlot operatingSlot = null;
@@ -41,10 +41,5 @@ public class TowerSlotGrp : MonoBehaviour
         {
             OperateCtrl.Ins.UpdatePlace(operatingSlot.towerId);
         }
-    }
-    public void SwitchDragMode(bool dragMode)
-    {
-        TowerSlotGrp.dragMode = dragMode;
-        ApplySelect();
     }
 }

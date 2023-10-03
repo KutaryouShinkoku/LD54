@@ -21,6 +21,7 @@ public class TowerSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegi
         if (!TowerSlotGrp.dragMode)
             return;
         grp.SelectSlot(this);
+        Debug.Log("drag");
     }
 
     void IDragHandler.OnDrag(PointerEventData eventData)
@@ -43,16 +44,17 @@ public class TowerSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegi
         if (TowerSlotGrp.dragMode)
             return;
         _grp.SelectSlot(this);
+        ScreenTouch.Ins.SetData(() =>
+        {
+            if (TowerSlotGrp.dragMode)
+                return;
+            _grp.ApplySelect();
+        });
+        Debug.Log("down");
     }
     private void Update()
     {
         cost.text = "" + GameManager.Ins.GetTowerCost(towerId);
-        if (TowerSlotGrp.dragMode)
-            return;
-        if (Input.GetMouseButtonDown(0))
-        {
-            grp.ApplySelect();
-        }
     }
     public void OnSelect()
     {

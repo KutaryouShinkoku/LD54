@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+    private bool isOver = false;
     public int round = 1;
     public int energy = 0;
     private float waveTimer = 0;
@@ -40,6 +41,7 @@ public class GameManager : Singleton<GameManager>
     {
         round = 1;
         energy = 0;
+        isOver = false;
         StartWave();
         towerSlotType = ETowerSlotType.buy;
         MapCtrl.Ins.InitMap();
@@ -50,6 +52,8 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public void FinishWave()
     {
+        if (isOver)
+            return;
         round++;
         if (round > 3)
         {
@@ -92,9 +96,17 @@ public class GameManager : Singleton<GameManager>
         _uiWin.SetActive(false);
         _uiLose.SetActive(false);
     }
-    public void Win() { _uiWin.SetActive(true); }
+    public void Win()
+    {
+        _uiWin.SetActive(true);
+        isOver = true;
+    }
 
-    public void Lose() { _uiLose.SetActive(true); }
+    public void Lose()
+    {
+        _uiLose.SetActive(true);
+        isOver = true;
+    }
 
     public void BackToMainMenu()
     {
