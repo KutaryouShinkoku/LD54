@@ -42,7 +42,6 @@ public class EnemyCreator : MonoBehaviour
             return;
         if (time < 0)
         {
-            Debug.Log("update");
             GenerateEnemy();
             enemyRemain--;
             time = Random.Range(_enemyCreatorData.minCreateTime, _enemyCreatorData.maxCreateTime);

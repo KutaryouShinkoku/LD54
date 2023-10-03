@@ -6,7 +6,6 @@ public enum ETowerSlotType { buy, upgrade };
 public class TowerSlotUI : MonoBehaviour
 {
     [SerializeField] private int _id;
-    private int _level => GameManager.Ins.GetTowerLevel(_id);
     private TowerData _towerData => Configs.Ins.GetTowerData(_id);
     [SerializeField] Text _cost;
     private void Start()
@@ -21,11 +20,11 @@ public class TowerSlotUI : MonoBehaviour
         {
             case ETowerSlotType.buy:
                 // _cost.text = "" + _towerData.buyCost[_level];
-                _cost.text = "" + Configs.Ins.cost;
+                _cost.text = "" + Configs.Ins.baseTowerCost;
 
                 break;
             case ETowerSlotType.upgrade:
-                _cost.text = "" + Configs.Ins.cost;
+                _cost.text = "" + Configs.Ins.baseTowerCost;
                 break;
         }
 

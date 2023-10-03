@@ -31,7 +31,10 @@ public class Configs : Singleton<Configs>
     public float towerDamage = 20f;
     [Header("敌人伤害")]
     public float enemyDamage = 20f;
-    public int cost = 50;
+    [Header("防御塔基本造价")]
+    public int baseTowerCost = 50;
+    [Header("场上每多一个防御塔的额外造价")]
+    public int addTowerCost = 30;
 
     //[SerializeField]
     //private EnemyCreatorData _enemyCreatorData;

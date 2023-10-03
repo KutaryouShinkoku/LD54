@@ -18,6 +18,11 @@ public class GameManager : Singleton<GameManager>
     public Text roundText;
     public GameObject _uiWin;
     public GameObject _uiLose;
+    public int GetTowerCost(int towerId)
+    {
+        int num = MapCtrl.Ins.GetTowerNumById(towerId);
+        return Configs.Ins.baseTowerCost + num * Configs.Ins.addTowerCost;
+    }
 
     public void AddEnergy(int energy)
     {
@@ -38,20 +43,6 @@ public class GameManager : Singleton<GameManager>
         StartWave();
         towerSlotType = ETowerSlotType.buy;
         MapCtrl.Ins.InitMap();
-    }
-
-    /// <summary>
-    /// 玩家的防御设施升级状况   key: towerId, value: level
-    /// </summary>
-    private Dictionary<int, int> towerLevelMap = new Dictionary<int, int>();
-
-    public int GetTowerLevel(int towerId)
-    {
-        if (towerLevelMap.ContainsKey(towerId))
-        {
-            return towerLevelMap[towerId];
-        }
-        return 0;
     }
 
     /// <summary>
@@ -90,19 +81,10 @@ public class GameManager : Singleton<GameManager>
         waveTimer += Time.deltaTime;
 
         //按R重开
-        if(Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             Restart();
         }
-    }
-
-    public void UpgradeTower(int towerId)
-    {
-        if (towerLevelMap.ContainsKey(towerId))
-        {
-            towerLevelMap[towerId]++;
-        }
-        EC.Send(EC.UPGRADE_TOWER);
     }
 
     public void ResetGameUI()
@@ -121,6 +103,6 @@ public class GameManager : Singleton<GameManager>
     //重开
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name) ;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

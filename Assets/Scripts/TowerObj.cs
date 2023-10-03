@@ -6,7 +6,6 @@ public class TowerObj : MonoBehaviour
 {
     public int towerId = 0;
     public TowerData data => Configs.Ins.GetTower(towerId);
-    public int level => GameManager.Ins.GetTowerLevel(towerId);
     public float hp = 100;
     public Vector2Int centerCrd;//攻击锚点坐标
     public Transform atkPos;

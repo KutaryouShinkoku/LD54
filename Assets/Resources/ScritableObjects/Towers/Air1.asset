@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerBase
   id: 3
   towerIcon: {fileID: 21300000, guid: 4d25fa5ce36270c4999f0d59673684b1, type: 3}
+  slotIcon: {fileID: 21300000, guid: 031a0006bb66e1e45a87c14db8bc24e6, type: 3}
+  slotIcon2: {fileID: 21300000, guid: f5832a4a179361b438a504b03623a8f2, type: 3}
   attackType: 1
   links:
   - {x: -1, y: 1}
@@ -23,7 +25,3 @@ MonoBehaviour:
   - {x: 1, y: -1}
   projectileSprite: {fileID: 21300000, guid: c36223d606c298149ab5b02542862ebf, type: 3}
   animator: {fileID: 22100000, guid: 308db04a1542649158e1ded3232e5968, type: 2}
-  _attack: 010000000200000003000000
-  _level: 0
-  _upgradeCost: 010000000200000003000000
-  _buyCost: 020000000200000003000000

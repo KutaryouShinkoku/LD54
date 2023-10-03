@@ -99,7 +99,7 @@ public class OperateCtrl : Singleton<OperateCtrl>
         {
             return EPreviewState.Colonized;
         }
-        else if (GameManager.Ins.energy < Configs.Ins.cost)
+        else if (GameManager.Ins.energy < Configs.Ins.baseTowerCost)
         {
             return EPreviewState.LackEnergy;
         }

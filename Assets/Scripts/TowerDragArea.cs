@@ -8,18 +8,24 @@ public class TowerDragArea : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
     public TowerSlot slot;
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
-        OperateCtrl.Ins.EnterPlace(slot.towerId);
+        if (!TowerSlotGrp.dragMode)
+            return;
+        slot.grp.SelectSlot(slot);
     }
 
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
-        OperateCtrl.Ins.UpdatePlace(slot.towerId);
+        if (!TowerSlotGrp.dragMode)
+            return;
+        // OperateCtrl.Ins.UpdatePlace(slot.towerId);
 
     }
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
-        OperateCtrl.Ins.ExitPlace(slot.towerId);
+        if (!TowerSlotGrp.dragMode)
+            return;
+        slot.grp.ApplySelect();
 
     }
 }

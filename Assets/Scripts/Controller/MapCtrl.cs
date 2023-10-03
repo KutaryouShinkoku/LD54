@@ -36,6 +36,16 @@ public class MapCtrl : Singleton<MapCtrl>
         }
         return null;
     }
+    public int GetTowerNumById(int towerId)
+    {
+        int num = 0;
+        for (int i = 0; i < towers.Count; i++)
+        {
+            if (towers[i].towerId == towerId)
+                num++;
+        }
+        return num;
+    }
     public PathInfo GetPathById(int pathId)
     {
         for (int i = 0; i < paths.Length; i++)
@@ -136,7 +146,7 @@ public class MapCtrl : Singleton<MapCtrl>
             grid.Occupied(tower);
         }
         GetPathByCrd(targetCrd).AddTower(tower);
-        GameManager.Ins.energy -= Configs.Ins.cost;
+        GameManager.Ins.energy -= Configs.Ins.baseTowerCost;
     }
     public void DestoryTower(TowerObj tower)
     {
