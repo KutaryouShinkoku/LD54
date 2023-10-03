@@ -46,11 +46,13 @@ public class MapCtrl : Singleton<MapCtrl>
         }
         return null;
     }
-    //[UnityEditor.MenuItem("Map/Generate")]
-    //public static void GenerateMap()
-    //{
-    //    Ins.InitMap();
-    //}
+#if UNITY_EDITOR
+    [UnityEditor.MenuItem("Map/Generate")]
+    public static void GenerateMap()
+    {
+        Ins.InitMap();
+    }
+#endif
     public void InitMap()
     {
         ClearMap();
