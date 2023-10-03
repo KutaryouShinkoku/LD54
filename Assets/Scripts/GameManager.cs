@@ -73,7 +73,7 @@ public class GameManager : Singleton<GameManager>
         waveTimer = 0;
         isInPrepare = true;
         progressAnimator.Play("Enter");
-        roundText.text = "Round" + round + "are comming!";
+        roundText.text = "Round" + round + " are coming!";
     }
 
     private void Update()
@@ -88,6 +88,12 @@ public class GameManager : Singleton<GameManager>
         }
         progressBar.fillAmount = waveTimer / roundData.PrepareTime;
         waveTimer += Time.deltaTime;
+
+        //按R重开
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            Restart();
+        }
     }
 
     public void UpgradeTower(int towerId)
@@ -111,5 +117,10 @@ public class GameManager : Singleton<GameManager>
     public void BackToMainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+    //重开
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name) ;
     }
 }
