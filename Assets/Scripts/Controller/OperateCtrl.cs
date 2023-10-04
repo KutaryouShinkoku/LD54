@@ -140,9 +140,10 @@ public class OperateCtrl : Singleton<OperateCtrl>
     public void ExitDelete()
     {
         Grid targetGrid = map.GetGridByPos(mousePos);
+        Debug.Log(targetGrid.tower);
         if (targetGrid && targetGrid.tower)
         {
-            map.DestoryTower(targetGrid.tower);
+            map.DestoryTower(targetGrid.tower, true);
         }
         ClearPreview();
     }

@@ -153,7 +153,7 @@ public class MapCtrl : Singleton<MapCtrl>
         towers.Add(tower);
         EC.Send(EC.CHANGE_PLACE_TOWER);
     }
-    public void DestoryTower(TowerObj tower)
+    public void DestoryTower(TowerObj tower, bool destoryNow = false)
     {
         GetPathByCrd(tower.centerCrd).RemoveTower(tower);
 
@@ -164,6 +164,8 @@ public class MapCtrl : Singleton<MapCtrl>
             grid.CancelOccupied();
         }
         towers.Remove(tower);
+        if (destoryNow)
+            tower.gameObject.OPPush();
         EC.Send(EC.CHANGE_PLACE_TOWER);
 
     }
