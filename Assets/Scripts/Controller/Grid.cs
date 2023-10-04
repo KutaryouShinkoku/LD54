@@ -85,6 +85,8 @@ public class Grid : MonoBehaviour
     public void PreviewDelete()
     {
         mask.gameObject.SetActive(true);
+        if (tower)
+            tower.PreviewDelete();
     }
     public void PreviewErrorOccupy()
     {
@@ -94,6 +96,8 @@ public class Grid : MonoBehaviour
     {
         preview.gameObject.SetActive(false);
         mask.gameObject.SetActive(false);
+        if (tower)
+            tower.CancelPreview();
     }
     public void AddEnergy()
     {

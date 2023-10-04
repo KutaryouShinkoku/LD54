@@ -13,10 +13,6 @@ public class GameManager : Singleton<GameManager>
     private bool isInPrepare = false;
     public RoundData roundData => Configs.Ins.GetRoundData(round);
     public EnemyCreator enemyCreator;
-    public ETowerSlotType towerSlotType;
-    public Animator progressAnimator;
-    public Image progressBar;
-    public Text roundText;
     public GameObject _uiWin;
     public GameObject _uiLose;
     public int GetTowerCost(int towerId)
@@ -43,7 +39,6 @@ public class GameManager : Singleton<GameManager>
         energy = 0;
         isOver = false;
         StartWave();
-        towerSlotType = ETowerSlotType.buy;
         MapCtrl.Ins.InitMap();
     }
 
@@ -67,22 +62,25 @@ public class GameManager : Singleton<GameManager>
     {
         waveTimer = 0;
         isInPrepare = true;
-        progressAnimator.Play("Enter");
-        roundText.text = "Round" + round + " are coming!";
+        UI.Ins.Get<U_ProgressBar>().Enter("Round" + round + " are coming!");
     }
 
     private void Update()
     {
         if (!isInPrepare)
             return;
+        U_ProgressBar progressBar = UI.Ins.Get<U_ProgressBar>();
         if (waveTimer >= roundData.PrepareTime)
         {
             enemyCreator.StartCreate();
-            progressAnimator.Play("Exit");
+            progressBar.Exit();
             isInPrepare = false;
         }
-        progressBar.fillAmount = waveTimer / roundData.PrepareTime;
-        waveTimer += Time.deltaTime;
+        else
+        {
+            progressBar.UpdateProgress(waveTimer / roundData.PrepareTime);
+            waveTimer += Time.deltaTime;
+        }
 
         //按R重开
         if (Input.GetKeyDown(KeyCode.R))

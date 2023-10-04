@@ -27,6 +27,7 @@ public class OperateCtrl : Singleton<OperateCtrl>
         {
             case EPreviewState.Access:
                 map.PlaceTower(towerId, map.GetGridByPos(mousePos).crd);
+                UI.Ins.Get<U_TowerSlotGrp>().SparkleSlotPrice(towerId);
                 break;
             case EPreviewState.Occupied:
                 UI.Ins.Get<U_OperateTips>().SetData("Lands are occupied");
@@ -99,7 +100,7 @@ public class OperateCtrl : Singleton<OperateCtrl>
         {
             return EPreviewState.Colonized;
         }
-        else if (GameManager.Ins.energy < Configs.Ins.baseTowerCost)
+        else if (GameManager.Ins.energy < GameManager.Ins.GetTowerCost(towerId))
         {
             return EPreviewState.LackEnergy;
         }

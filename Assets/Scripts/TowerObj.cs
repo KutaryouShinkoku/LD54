@@ -7,6 +7,7 @@ public class TowerObj : MonoBehaviour
     public int towerId = 0;
     public TowerData data => Configs.Ins.GetTower(towerId);
     public float hp = 100;
+    private bool isInPreview = false;
     public Vector2Int centerCrd;//攻击锚点坐标
     public Transform atkPos;
     public PathInfo path => MapCtrl.Ins.GetPathByCrd(centerCrd);
@@ -21,6 +22,7 @@ public class TowerObj : MonoBehaviour
         this.centerCrd = centerCrd;
         transform.localPosition = Vector3.zero;
         animator.runtimeAnimatorController = data.Animator;
+        isInPreview = false;
     }
     private void Update()
     {
@@ -52,7 +54,11 @@ public class TowerObj : MonoBehaviour
     public void Hurt()
     {
         hp -= Configs.Ins.enemyDamage;
-        TM.SetTimer(this.Hash("towerHurt"), 0.3f, p => sprr.color = Color.Lerp(Color.red, Color.white, p));
+        TM.SetTimer(this.Hash("towerHurt"), 0.3f, p =>
+        {
+            if (!isInPreview)
+                sprr.color = Color.Lerp(Color.red, Color.white, p);
+        });
         if (hp <= 0)
         {
             Die();
@@ -72,5 +78,15 @@ public class TowerObj : MonoBehaviour
     {
         isInAtking = path.GetFrontEnemy(data.AttackType) != null;
         animator.SetBool("isAtking", isInAtking);
+    }
+    public void PreviewDelete()
+    {
+        sprr.color = Color.red;
+        isInPreview = true;
+    }
+    public void CancelPreview()
+    {
+        isInPreview = false;
+        sprr.color = Color.white;
     }
 }

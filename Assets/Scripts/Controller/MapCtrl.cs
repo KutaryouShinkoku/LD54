@@ -137,7 +137,7 @@ public class MapCtrl : Singleton<MapCtrl>
     }
     public void PlaceTower(int towerId, Vector2Int targetCrd)
     {
-        Debug.Log("place" + towerId + "at" + targetCrd);
+        // Debug.Log("place" + towerId + "at" + targetCrd);
         TowerObj tower = Res.Ins.towerPrefab.OPGet().GetComponent<TowerObj>();
         Grid targetGrid = GetGrid(targetCrd);
         tower.transform.SetParent(targetGrid.towerFolder);
@@ -149,7 +149,8 @@ public class MapCtrl : Singleton<MapCtrl>
             grid.Occupied(tower);
         }
         GetPathByCrd(targetCrd).AddTower(tower);
-        GameManager.Ins.energy -= Configs.Ins.baseTowerCost;
+        towers.Add(tower);
+        GameManager.Ins.energy -= GameManager.Ins.GetTowerCost(towerId);
     }
     public void DestoryTower(TowerObj tower)
     {
@@ -161,6 +162,7 @@ public class MapCtrl : Singleton<MapCtrl>
             Grid grid = GetGrid(tower.centerCrd + crdList[i]);
             grid.CancelOccupied();
         }
+        towers.Remove(tower);
         tower.gameObject.OPPush();
 
     }
@@ -176,6 +178,7 @@ public class MapCtrl : Singleton<MapCtrl>
     }
     public void KillEnemy(Enemy enemy)
     {
+        enemies.Remove(enemy);
         GetPathByCrd(enemy.crd).RemoveEnemy(enemy);
 
     }

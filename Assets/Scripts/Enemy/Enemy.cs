@@ -72,9 +72,7 @@ public class Enemy : MonoBehaviour
     public void Hurt()
     {
         hurtEffect.Play("EnemyHurtEffect");
-        // TM.SetTimer(this.Hash("enemyHurt"), 0.3f, p => sprr.color = Color.Lerp(Color.red, Color.white, p));
-        sprr.color = Color.red;
-        Debug.Log(sprr.color);
+        TM.SetTimer(this.Hash("enemyHurt"), 0.3f, p => sprr.color = Color.Lerp(Color.red, Color.white, p));
         hp -= Configs.Ins.towerDamage;
         if (hp <= 0)
         {

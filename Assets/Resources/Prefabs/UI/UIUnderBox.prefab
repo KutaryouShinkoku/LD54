@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.10344157, y: 0.44267517}
   m_AnchorMax: {x: 0.20274703, y: 0.74716645}
-  m_AnchoredPosition: {x: 0, y: 0.000005722046}
+  m_AnchoredPosition: {x: 0, y: 0.0000076293945}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &582742348426017428
@@ -409,8 +409,8 @@ RectTransform:
   m_Father: {fileID: 4379758249401791193}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.7864418, y: 0.0048366706}
-  m_AnchorMax: {x: 0.9560785, y: 0.16633473}
+  m_AnchorMin: {x: 0.8100132, y: 0.016035402}
+  m_AnchorMax: {x: 0.9325073, y: 0.20109326}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -446,16 +446,18 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 5e93f43c722637241931feb2823060f0, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: -Drag-
+  m_Text: 'Always
+
+    -Drag-'
 --- !u!1 &3293001130751639501
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee8a2500084e4e2a9737fb3b66b561c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotGrp: {fileID: 582742348888801733}
 --- !u!1 &4379758248543544226
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,7 +711,7 @@ RectTransform:
   m_AnchorMin: {x: 0.21875824, y: 0.0000005175152}
   m_AnchorMax: {x: 0.7868759, y: 0.6630995}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -25.4331, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4379758248543544225
 CanvasRenderer:
@@ -797,6 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d9fd619e074452f9cad2622dd79379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 1
   towerSlots:
   - {fileID: 9095227055216857784}
   - {fileID: 1980397499138910574}

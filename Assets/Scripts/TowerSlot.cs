@@ -12,13 +12,14 @@ public class TowerSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegi
     private Sprite normalSprite => Configs.Ins.GetTower(towerId).SlotIcon;
     [SerializeField] Image icon;
     [SerializeField] Text cost;
-    private TowerSlotGrp _grp;
-    public TowerSlotGrp grp => _grp;
+    private U_TowerSlotGrp _grp;
+    public U_TowerSlotGrp grp => _grp;
+    [SerializeField] private Image mask;
 
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
-        if (!TowerSlotGrp.dragMode)
+        if (!U_TowerSlotGrp.dragMode)
             return;
         grp.SelectSlot(this);
         Debug.Log("drag");
@@ -26,7 +27,7 @@ public class TowerSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegi
 
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
-        if (!TowerSlotGrp.dragMode)
+        if (!U_TowerSlotGrp.dragMode)
             return;
         // OperateCtrl.Ins.UpdatePlace(slot.towerId);
 
@@ -34,19 +35,19 @@ public class TowerSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegi
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
-        if (!TowerSlotGrp.dragMode)
+        if (!U_TowerSlotGrp.dragMode)
             return;
         grp.ApplySelect();
 
     }
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
-        if (TowerSlotGrp.dragMode)
+        if (U_TowerSlotGrp.dragMode)
             return;
         _grp.SelectSlot(this);
         ScreenTouch.Ins.SetData(() =>
         {
-            if (TowerSlotGrp.dragMode)
+            if (U_TowerSlotGrp.dragMode)
                 return;
             _grp.ApplySelect();
         });
@@ -64,9 +65,17 @@ public class TowerSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegi
     {
         icon.sprite = normalSprite;
     }
-    public void Init(TowerSlotGrp grp)
+    public void Init(U_TowerSlotGrp grp)
     {
         icon.sprite = normalSprite;
         this._grp = grp;
+    }
+    public void SparklePrice()
+    {
+        Color maskColor = mask.color;
+        TM.SetTimer(this.Hash("SparkPrice"), 0.5f, p =>
+        {
+            mask.color = new Color(maskColor.r, maskColor.g, maskColor.b, Mathf.Lerp(1, 0, p));
+        });
     }
 }

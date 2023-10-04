@@ -6,11 +6,11 @@ public class UINode : MonoBehaviour
 {
     [SerializeField]
     private bool active = false;
-    protected void Awake()
+    protected virtual void Awake()
     {
         UI.Ins.RegistNode(this);
     }
-    protected void Start()
+    protected virtual void Start()
     {
         gameObject.SetActive(active);
     }

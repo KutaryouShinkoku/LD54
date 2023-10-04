@@ -6,6 +6,6 @@ public class DragModeToggle : MonoBehaviour
 {
     public void OnSwitchToggle()
     {
-        TowerSlotGrp.dragMode = GetComponent<UnityEngine.UI.Toggle>().isOn;
+        U_TowerSlotGrp.dragMode = GetComponent<UnityEngine.UI.Toggle>().isOn;
     }
 }
