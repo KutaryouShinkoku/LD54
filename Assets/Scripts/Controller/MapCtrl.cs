@@ -164,7 +164,6 @@ public class MapCtrl : Singleton<MapCtrl>
             grid.CancelOccupied();
         }
         towers.Remove(tower);
-        tower.gameObject.OPPush();
         EC.Send(EC.CHANGE_PLACE_TOWER);
 
     }
