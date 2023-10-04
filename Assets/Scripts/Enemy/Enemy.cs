@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public EnemyData data => Configs.Ins.GetEnemy(enemyType);
     private Animator animator => GetComponent<Animator>();
     private PathInfo pathInfo => MapCtrl.Ins.GetPathById(crd.y);
-    public SpriteRenderer sprr;
+    [SerializeField] private SpriteRenderer sprr;
     private int level = 0;
     public void Init(AttackType type, Vector2Int crd, int level)
     {
@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
     {
         if (isDead)
             return;
-        if (pathInfo.frontTower != null && crd.x - 1 == pathInfo.frontTower.centerCrd.x)
+        if (pathInfo.frontBlockGrid != null && crd.x - 1 == pathInfo.frontBlockGrid.crd.x)
         {
             animator.SetBool("isAtking", true);
         }
@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
     }
     public void OnPathInfoChanged()
     {
-        if (pathInfo.frontTower != null && crd.x - 1 == pathInfo.frontTower.centerCrd.x)
+        if (pathInfo.frontBlockGrid != null && crd.x - 1 == pathInfo.frontBlockGrid.crd.x)
         {
             animator.SetBool("isAtking", true);
         }
@@ -72,6 +72,9 @@ public class Enemy : MonoBehaviour
     public void Hurt()
     {
         hurtEffect.Play("EnemyHurtEffect");
+        // TM.SetTimer(this.Hash("enemyHurt"), 0.3f, p => sprr.color = Color.Lerp(Color.red, Color.white, p));
+        sprr.color = Color.red;
+        Debug.Log(sprr.color);
         hp -= Configs.Ins.towerDamage;
         if (hp <= 0)
         {
@@ -90,7 +93,8 @@ public class Enemy : MonoBehaviour
     }
     public void Attack()
     {
-        pathInfo.frontTower?.Hurt();
+        if (pathInfo.frontBlockGrid)
+            pathInfo.frontBlockGrid.tower.Hurt();
     }
 }
 

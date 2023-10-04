@@ -220,6 +220,7 @@ MonoBehaviour:
   hp: 100
   centerCrd: {x: 0, y: 0}
   atkPos: {fileID: 8558899103183010606}
+  sprr: {fileID: 7280498735502478486}
 --- !u!95 &8203121375995364013
 Animator:
   serializedVersion: 4

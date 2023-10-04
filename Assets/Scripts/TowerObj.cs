@@ -13,6 +13,7 @@ public class TowerObj : MonoBehaviour
     private float atkTimer = 0;
     private bool isInAtking = false;
     private Animator animator => GetComponent<Animator>();
+    [SerializeField] private SpriteRenderer sprr;
     public void Init(int towerId, Vector2Int centerCrd)
     {
         this.towerId = towerId;
@@ -45,12 +46,13 @@ public class TowerObj : MonoBehaviour
             Projectile projectile = Res.Ins.projectilePrefab.OPGet().GetComponent<Projectile>();
             projectile.transform.SetParent(MapCtrl.Ins.projectileFolder);
             projectile.transform.position = atkPos.position;
-            projectile.Init(path.pathId, data.ProjectileSprite, data.AttackType);
+            projectile.Init(path.pathId, data.ProjectileId, data.AttackType);
         }
     }
     public void Hurt()
     {
         hp -= Configs.Ins.enemyDamage;
+        TM.SetTimer(this.Hash("towerHurt"), 0.3f, p => sprr.color = Color.Lerp(Color.red, Color.white, p));
         if (hp <= 0)
         {
             Die();

@@ -23,5 +23,5 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: 1, y: 0}
   - {x: 1, y: 1}
-  projectileSprite: {fileID: 21300000, guid: c36223d606c298149ab5b02542862ebf, type: 3}
+  projectileId: 2
   animator: {fileID: 22100000, guid: 0a75b129bef34438cb1b26578aa462a2, type: 2}

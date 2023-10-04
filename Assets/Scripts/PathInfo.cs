@@ -16,35 +16,20 @@ public class PathInfo
     /// 最远处的x坐标
     /// </summary>
     private int _maxRight;
-    public List<Grid> grids
-    {
-        get
-        {
-            Grid[,] allGrids = MapCtrl.Ins.grids;
-            List<Grid> res = new List<Grid>();
-            for (int i = 0; i < allGrids.GetLength(0); i++)
-            {
-                for (int j = 0; j < allGrids.GetLength(1); j++)
-                {
-                    if (allGrids[i, j].crd.y == pathId)
-                    {
-                        res.Add(allGrids[i, j]);
-                    }
-                }
-            }
-            return res;
-        }
-    }
+    private List<Grid> _grids;
+    public List<Grid> grids => _grids;
+
     public int maxRight => _maxRight;
     /// <summary>
     /// 该路径所在的y坐标
     /// </summary>
     private int _pathId;
     public int pathId => _pathId;
-    public PathInfo(int pathId, int maxRight)
+    public PathInfo(int pathId, int maxRight, List<Grid> pathGrids)
     {
-        this._pathId = pathId;
-        this._maxRight = maxRight;
+        _pathId = pathId;
+        _maxRight = maxRight;
+        this._grids = pathGrids;
     }
     public void AddEnemy(Enemy enemy)
     {
@@ -121,6 +106,18 @@ public class PathInfo
     /// 最前线的敌人的x坐标
     /// </summary>
     public int frontLine => enemies.Count == 0 ? maxRight : enemies[0].crd.x;
-    public TowerObj frontTower => towers.Count == 0 ? null : towers[0];
+    // public TowerObj frontTower => towers.Count == 0 ? null : towers[0];
+    public Grid frontBlockGrid
+    {
+        get
+        {
+            for (int i = grids.Count - 1; i >= 0; i--)
+            {
+                if (grids[i].tower != null)
+                    return grids[i];
+            }
+            return null;
+        }
+    }
 
 }

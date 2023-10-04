@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
     public int energy = 0;
     private float waveTimer = 0;
     private bool isInPrepare = false;
-    public RoundData roundData => Configs.Ins.GetEnemyCreatorData(round);
+    public RoundData roundData => Configs.Ins.GetRoundData(round);
     public EnemyCreator enemyCreator;
     public ETowerSlotType towerSlotType;
     public Animator progressAnimator;

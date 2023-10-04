@@ -73,8 +73,8 @@ public class MapCtrl : Singleton<MapCtrl>
         for (int j = 0; j < height; j++)
         {
             bool isFertile = !(j == 0 || j == height - 1);
-            if (isFertile)
-                paths[j - 1] = new PathInfo(j, width - 1);
+            bool hasPath = isFertile;
+            List<Grid> pathGrids = new List<Grid>();
             for (int i = 0; i < width; i++)
             {
                 if (i > width - 2)
@@ -87,7 +87,10 @@ public class MapCtrl : Singleton<MapCtrl>
                 com.Init(isFertile);
                 grids[crd.x, crd.y] = com;
                 com.crd = crd;
+                pathGrids.Add(com);
             }
+            if (hasPath)
+                paths[j - 1] = new PathInfo(j, width - 1, pathGrids);
         }
     }
     private void ClearMap()
