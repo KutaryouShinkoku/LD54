@@ -37,6 +37,7 @@ public class Configs : Singleton<Configs>
     public int baseTowerCost = 50;
     [Header("场上每多一个防御塔的额外造价")]
     public int addTowerCost = 30;
+    public float addTowerAtkSpeed = 0.7f;
 
     //[SerializeField]
     //private EnemyCreatorData _enemyCreatorData;

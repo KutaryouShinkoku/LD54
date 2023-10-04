@@ -22,7 +22,6 @@ public class TowerSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegi
         if (!U_TowerSlotGrp.dragMode)
             return;
         grp.SelectSlot(this);
-        Debug.Log("drag");
     }
 
     void IDragHandler.OnDrag(PointerEventData eventData)
@@ -51,7 +50,6 @@ public class TowerSlot : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegi
                 return;
             _grp.ApplySelect();
         });
-        Debug.Log("down");
     }
     private void Update()
     {

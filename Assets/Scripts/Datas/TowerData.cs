@@ -14,6 +14,7 @@ public class TowerData : ScriptableObject
     [SerializeField] AttackType attackType; //攻击类型（对地对空）
     [SerializeField] List<Vector2Int> links;
     [SerializeField] int projectileId; //子弹图片
+    [SerializeField] Color lvBgColor; //等级背景色
     [SerializeField] RuntimeAnimatorController animator;
 
     //TODO:[SerializeField] 占地面积
@@ -34,6 +35,7 @@ public class TowerData : ScriptableObject
 
     public Sprite SlotIcon => slotIcon;
     public Sprite SlotIcon2 => slotIcon2;
+    public Color LvBgColor => lvBgColor;
 
 
 

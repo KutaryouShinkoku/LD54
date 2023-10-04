@@ -24,4 +24,5 @@ MonoBehaviour:
   - {x: -1, y: 1}
   - {x: 1, y: 1}
   projectileId: 1
+  lvBgColor: {r: 0, g: 0.007843138, b: 0.47058824, a: 0.74509805}
   animator: {fileID: 22100000, guid: 61407d8a60c7a43f09e9017dcff87150, type: 2}

@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class TowerObj : MonoBehaviour
 {
-    public int towerId = 0;
+    private int _towerId = 0;
+    public int towerId => _towerId;
     public TowerData data => Configs.Ins.GetTower(towerId);
     public float hp = 100;
+    public float atkSpeed => 1 + lv * Configs.Ins.addTowerAtkSpeed;
     private bool isInPreview = false;
     public Vector2Int centerCrd;//攻击锚点坐标
     public Transform atkPos;
@@ -14,15 +17,32 @@ public class TowerObj : MonoBehaviour
     private float atkTimer = 0;
     private bool isInAtking = false;
     private Animator animator => GetComponent<Animator>();
+    private AnimatorStateInfo curState => animator.GetCurrentAnimatorStateInfo(0);
+    [SerializeField] private Transform lvShow;
+    private int _lv = 0;
+    public int lv => _lv;
+    [SerializeField] private Image lvBg;
+    [SerializeField] private Text lvText;
     [SerializeField] private SpriteRenderer sprr;
+    private void OnEnable()
+    {
+        EC.On(EC.CHANGE_PLACE_TOWER, RefreshLv);
+    }
+    private void OnDisable()
+    {
+        EC.Off(EC.CHANGE_PLACE_TOWER, RefreshLv);
+
+    }
     public void Init(int towerId, Vector2Int centerCrd)
     {
-        this.towerId = towerId;
+        this._towerId = towerId;
         hp = 100;
+        _lv = -1;
         this.centerCrd = centerCrd;
         transform.localPosition = Vector3.zero;
         animator.runtimeAnimatorController = data.Animator;
         isInPreview = false;
+        RefreshLv();
     }
     private void Update()
     {
@@ -34,10 +54,42 @@ public class TowerObj : MonoBehaviour
                 atkTimer = 0;
                 animator.SetBool("isAtking", true);
             }
+            animator.speed = atkSpeed;
         }
         else
         {
+            animator.speed = 1;
             atkTimer = 0;
+        }
+    }
+    public void RefreshLv()
+    {
+        int curLv = 0;
+        List<Grid> nearGrids = MapCtrl.Ins.GetNearGrid(centerCrd);
+        for (int i = 0; i < nearGrids.Count; i++)
+        {
+            Grid grid = nearGrids[i];
+            if (grid.tower != null && grid.tower.data.AttackType == data.AttackType && grid.tower != this)
+            {
+                curLv++;
+            }
+        }
+        if (_lv != curLv)
+        {
+            _lv = curLv;
+            ShowChangeLv();
+        }
+    }
+    private void ShowChangeLv()
+    {
+        lvShow.gameObject.SetActive(_lv > 0);
+        if (_lv > 0)
+        {
+            TM.SetTimer(this.Hash("changeLv"), 0.5f, p =>
+            {
+                lvBg.color = Color.Lerp(Color.white, data.LvBgColor, p);
+            });
+            lvText.text = $"+{_lv}";
         }
     }
     private void Attack()

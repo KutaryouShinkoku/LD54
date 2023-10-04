@@ -148,9 +148,10 @@ public class MapCtrl : Singleton<MapCtrl>
             Grid grid = GetGrid(targetCrd + crdList[i]);
             grid.Occupied(tower);
         }
+        GameManager.Ins.energy -= GameManager.Ins.GetTowerCost(towerId);
         GetPathByCrd(targetCrd).AddTower(tower);
         towers.Add(tower);
-        GameManager.Ins.energy -= GameManager.Ins.GetTowerCost(towerId);
+        EC.Send(EC.CHANGE_PLACE_TOWER);
     }
     public void DestoryTower(TowerObj tower)
     {
@@ -164,6 +165,7 @@ public class MapCtrl : Singleton<MapCtrl>
         }
         towers.Remove(tower);
         tower.gameObject.OPPush();
+        EC.Send(EC.CHANGE_PLACE_TOWER);
 
     }
     /// <summary>
@@ -181,5 +183,28 @@ public class MapCtrl : Singleton<MapCtrl>
         enemies.Remove(enemy);
         GetPathByCrd(enemy.crd).RemoveEnemy(enemy);
 
+    }
+    public List<Grid> GetNearGrid(Vector2Int crd)
+    {
+        List<Grid> res = new List<Grid>();
+        Vector2Int[] dirs = new Vector2Int[] {
+            Vector2Int.up,
+            Vector2Int.down,
+            Vector2Int.left,
+            Vector2Int.right,
+            new Vector2Int(-1,-1),
+            new Vector2Int(-1,1),
+            new Vector2Int(1,-1),
+            new Vector2Int(1,1)
+        };
+        for (int i = 0; i < dirs.Length; i++)
+        {
+            Vector2Int targetCrd = crd + dirs[i];
+            if (ValidCrd(targetCrd))
+            {
+                res.Add(GetGrid(targetCrd));
+            }
+        }
+        return res;
     }
 }

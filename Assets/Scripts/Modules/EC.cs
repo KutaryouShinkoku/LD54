@@ -8,6 +8,7 @@ public static class EC
 {
 	//======================= Event Key Const ===========================//
 	public const string UPGRADE_TOWER = "UPGRADE_TOWER";
+	public const string CHANGE_PLACE_TOWER = "PLACE_TOWER";
 
 	//===================================================================//
 
