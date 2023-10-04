@@ -14,6 +14,7 @@ public class TowerObj : MonoBehaviour
     public Vector2Int centerCrd;//攻击锚点坐标
     public Transform atkPos;
     public PathInfo path => MapCtrl.Ins.GetPathByCrd(centerCrd);
+    private List<Grid> buffGrids = new List<Grid>();
     private float atkTimer = 0;
     private bool isInAtking = false;
     private Animator animator => GetComponent<Animator>();
@@ -35,6 +36,7 @@ public class TowerObj : MonoBehaviour
     }
     public void Init(int towerId, Vector2Int centerCrd)
     {
+        buffGrids = new List<Grid>();
         this._towerId = towerId;
         hp = 100;
         _lv = -1;
@@ -66,14 +68,19 @@ public class TowerObj : MonoBehaviour
     {
         int curLv = 0;
         List<Grid> nearGrids = MapCtrl.Ins.GetNearGrid(centerCrd);
+        List<Grid> newBuffGrids = new List<Grid>();
         for (int i = 0; i < nearGrids.Count; i++)
         {
             Grid grid = nearGrids[i];
             if (grid.tower != null && grid.tower.data.AttackType == data.AttackType && grid.tower != this)
             {
                 curLv++;
+                if (!buffGrids.Contains(grid))
+                    grid.ShowUnionBuff(data.LvBgColor);
+                newBuffGrids.Add(grid);
             }
         }
+        buffGrids = newBuffGrids;
         if (_lv != curLv)
         {
             _lv = curLv;

@@ -38,6 +38,7 @@ public class Grid : MonoBehaviour
     private SpriteRenderer gridSprite => transform.Find("gridSprite").GetComponent<SpriteRenderer>();
     private SpriteRenderer preview => transform.Find("preview").GetComponent<SpriteRenderer>();
     private SpriteRenderer mask => transform.Find("mask").GetComponent<SpriteRenderer>();
+    private SpriteRenderer unionBuffMask => transform.Find("mask2").GetComponent<SpriteRenderer>();
     public Transform towerFolder;
     public Animator coinAnimator;
     public GameObject getEnergyEffect;
@@ -98,6 +99,10 @@ public class Grid : MonoBehaviour
         mask.gameObject.SetActive(false);
         if (tower)
             tower.CancelPreview();
+    }
+    public void ShowUnionBuff(Color color)
+    {
+        TM.SetTimer(this.Hash("SparkleBuff"), 1.2f, p => unionBuffMask.color = Color.Lerp(color, new Color(1, 1, 1, 0), p));
     }
     public void AddEnergy()
     {
