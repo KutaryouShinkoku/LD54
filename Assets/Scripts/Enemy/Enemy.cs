@@ -58,6 +58,8 @@ public class Enemy : MonoBehaviour
         transform.position = pos;
         if (pos.x < map.maxLeft)
         {
+            MapCtrl.Ins.KillEnemy(this);
+            Clear();
             GameManager.Ins.Lose();
         }
     }
