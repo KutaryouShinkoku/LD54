@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7599f9e60c0e64ee68deb59db94df399
+guid: 3d08027ab48e141c5b473215284ead78
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_2_death_0
+      name: Enemy_1_death_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 121b06b7819d7410c8cf4c7518e930a2
-      internalID: -744007016
+      spriteID: 15b7d4a0c38104f64baf13de554f0bb4
+      internalID: 778208656
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_2_death_1
+      name: Enemy_1_death_1
       rect:
         serializedVersion: 2
         x: 48
@@ -139,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e7bfbf3b5647463c8b2ae2812d6634c
-      internalID: 1937052039
+      spriteID: 2ed973c220bbe44f59d51f04999e73d6
+      internalID: -174251984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_2_death_2
+      name: Enemy_1_death_2
       rect:
         serializedVersion: 2
         x: 96
@@ -160,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4613a30887e034e6c9774cc85fa9a35c
-      internalID: -1364820075
+      spriteID: c0e2bc55d1de24d4a9f7eb5f7be9d638
+      internalID: 1835890332
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_2_death_3
+      name: Enemy_1_death_3
       rect:
         serializedVersion: 2
         x: 144
@@ -181,14 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0b4d2ff626dc4fe69ca22c8988507ac
-      internalID: -2035061625
+      spriteID: f1bb2836d6bd64efb8eb5859eb2da212
+      internalID: -10721737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_2_death_4
+      name: Enemy_1_death_4
       rect:
         serializedVersion: 2
         x: 192
@@ -202,14 +202,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01e98f60a389a4d388f3c7fabba37133
-      internalID: -1681111591
+      spriteID: 90882343131a34269ae0e9ef069e2ea5
+      internalID: 701005913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_2_death_5
+      name: Enemy_1_death_5
       rect:
         serializedVersion: 2
         x: 240
@@ -223,14 +223,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 777ad3316b1a2499fa06dcde81c9c48d
-      internalID: 367904678
+      spriteID: a3c302a96c6574a79850f718f17f2b88
+      internalID: 327993558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_2_death_6
+      name: Enemy_1_death_6
       rect:
         serializedVersion: 2
         x: 288
@@ -244,8 +244,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ecf408da7f0b4f9eb94e5d6dbf9b21d
-      internalID: 2135133505
+      spriteID: 955cbf038029749fea21ebd4a45dc941
+      internalID: 664466705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_1_death_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bebd739c3a0224c8cb27d72ec87f8536
+      internalID: 720787436
       vertices: []
       indices: 
       edges: []
@@ -261,13 +282,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Enemy_2_death_1: 1937052039
-      Enemy_2_death_6: 2135133505
-      Enemy_2_death_5: 367904678
-      Enemy_2_death_0: -744007016
-      Enemy_2_death_4: -1681111591
-      Enemy_2_death_2: -1364820075
-      Enemy_2_death_3: -2035061625
+      Enemy_1_death_6: 664466705
+      Enemy_1_death_4: 701005913
+      Enemy_1_death_3: -10721737
+      Enemy_1_death_1: -174251984
+      Enemy_1_death_0: 778208656
+      Enemy_1_death_7: 720787436
+      Enemy_1_death_5: 327993558
+      Enemy_1_death_2: 1835890332
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

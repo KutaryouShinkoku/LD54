@@ -14,12 +14,14 @@ public class Enemy : MonoBehaviour
     private PathInfo pathInfo => MapCtrl.Ins.GetPathById(crd.y);
     [SerializeField] private SpriteRenderer sprr;
     private int level = 0;
+    private bool isAwake = false;
     public void Init(AttackType type, Vector2Int crd, int level)
     {
         this.enemyType = type;
         this.crd = crd;
         this.hp = 100;
         isDead = false;
+        isAwake = false;
         progress = 0;
         this.level = level;
         sprr.color = new Color(sprr.color.r, sprr.color.g, sprr.color.b, 1);
@@ -46,7 +48,8 @@ public class Enemy : MonoBehaviour
         else
         {
             animator.SetBool("isAtking", false);
-            progress += Time.deltaTime * Configs.Ins.enemySpeed;
+            if (isAwake)
+                progress += Time.deltaTime * Configs.Ins.enemySpeed;
             if (progress >= 1)
             {
                 progress = 0;
@@ -62,6 +65,10 @@ public class Enemy : MonoBehaviour
             Clear();
             GameManager.Ins.Lose();
         }
+    }
+    public void SetAwake()
+    {
+        isAwake = true;
     }
     public void OnPathInfoChanged()
     {
