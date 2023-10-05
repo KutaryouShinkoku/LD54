@@ -12,6 +12,8 @@ public class Configs : Singleton<Configs>
 
     [SerializeField]
     private List<RoundData> _enemyCreatorData;
+    [SerializeField]
+    private List<RoundData> _loopRound;
 
     [SerializeField]
     private List<TowerData> _towerData;
@@ -59,9 +61,18 @@ public class Configs : Singleton<Configs>
     /**
      *
      */
-    public RoundData GetRoundData(float round)
+    public bool isInLoopRound(int round)
     {
-        return _enemyCreatorData.Find(o => o.round == round);
+        return round - 1 >= _enemyCreatorData.Count;
+    }
+    public RoundData GetRoundData(int round)
+    {
+        if (isInLoopRound(round))
+        {
+            return _loopRound[(round - 1 - _enemyCreatorData.Count) % _loopRound.Count];
+        }
+        else
+            return _enemyCreatorData.Find(o => o.round == round);
     }
     public TowerData GetTowerData(int id)
     {

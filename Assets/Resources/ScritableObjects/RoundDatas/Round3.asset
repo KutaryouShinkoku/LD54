@@ -15,8 +15,8 @@ MonoBehaviour:
   _prepareTime: 20
   _round: 3
   _minCreateTime: 2
-  _maxCreateTime: 3
-  enemyCnt: 20
+  _maxCreateTime: 5
+  enemyCnt: 25
   _baseLevel: 1
   _lv1: 1
   _lv2: 0

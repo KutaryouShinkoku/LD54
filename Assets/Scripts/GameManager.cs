@@ -47,10 +47,11 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public void FinishWave()
     {
+        UI.Ins.Get<U_RoundInfo>().Exit();
         if (isOver)
             return;
         round++;
-        if (round > 3)
+        if (round > 8)
         {
             Win();
             return;
@@ -74,6 +75,7 @@ public class GameManager : Singleton<GameManager>
         {
             enemyCreator.StartCreate();
             progressBar.Exit();
+            UI.Ins.Get<U_RoundInfo>().Enter();
             isInPrepare = false;
         }
         else

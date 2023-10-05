@@ -21,6 +21,7 @@ public class EnemyCreator : MonoBehaviour
     /// 本轮要刷出的敌人数量
     /// </summary>
     private int enemyRemain = 0;
+    public int EnemyRemain => enemyRemain;
     public void StartCreate()
     {
         active = true;
@@ -66,21 +67,21 @@ public class EnemyCreator : MonoBehaviour
         {
             pathIds.Add(MapCtrl.Ins.paths[i].pathId);
         }
-        float totalLevelWei = _enemyCreatorData.lv1 + _enemyCreatorData.lv2 + _enemyCreatorData.lv3;
-        float rand = Random.Range(0, totalLevelWei);
         int level = 0;
-        if (rand < _enemyCreatorData.lv1)
-        {
-            level = _enemyCreatorData.BaseLevel;
-        }
-        else if (rand < _enemyCreatorData.lv1 + _enemyCreatorData.lv2)
-        {
-            level = _enemyCreatorData.BaseLevel + 1;
-        }
-        else
-        {
-            level = _enemyCreatorData.BaseLevel + 2;
-        }
+        // float totalLevelWei = _enemyCreatorData.lv1 + _enemyCreatorData.lv2 + _enemyCreatorData.lv3;
+        // float rand = Random.Range(0, totalLevelWei);
+        // if (rand < _enemyCreatorData.lv1)
+        // {
+        //     level = _enemyCreatorData.BaseLevel;
+        // }
+        // else if (rand < _enemyCreatorData.lv1 + _enemyCreatorData.lv2)
+        // {
+        //     level = _enemyCreatorData.BaseLevel + 1;
+        // }
+        // else
+        // {
+        //     level = _enemyCreatorData.BaseLevel + 2;
+        // }
         Enemy enemyScript = enemy.GetComponent<Enemy>();
         enemyScript.Init(
             Random.Range(0, 1f) > 0.5 ? AttackType.Air : AttackType.Ground,
