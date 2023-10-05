@@ -13,11 +13,7 @@ MonoBehaviour:
   m_Name: Round8
   m_EditorClassIdentifier: 
   _prepareTime: 5
-  _round: 7
+  _round: 8
   _minCreateTime: 0.3
   _maxCreateTime: 2
   enemyCnt: 5
-  _baseLevel: 1
-  _lv1: 1
-  _lv2: 0
-  _lv3: 0
