@@ -25,7 +25,7 @@ public class Configs : Singleton<Configs>
     public float projectileSpeed = 2f;
 
     [Header("防御塔攻击间隔")]
-    public float towerAtkInterval = 0.7f;
+    public float towerAtkInterval = 0.85f;
 
     [Header("丰沃土地每秒产出")]
     public int fertileIncome = 1;
@@ -41,6 +41,7 @@ public class Configs : Singleton<Configs>
     public int addTowerCost = 30;
     [Header("场上每多一个防御塔的二次提升")]
     public int addTowerCost2 = 30;
+    [Header("防御塔每多一个非己供能装置的攻速增益")]
     public float addTowerAtkSpeed = 0.7f;
 
     //[SerializeField]

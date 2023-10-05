@@ -137,9 +137,9 @@ public class OperateCtrl : Singleton<OperateCtrl>
     public void ExitDelete()
     {
         Grid targetGrid = map.GetGridByPos(mousePos);
-        Debug.Log(targetGrid.tower);
         if (targetGrid && targetGrid.tower)
         {
+            UI.Ins.Get<U_TowerSlotGrp>().SparkleSlotPrice(targetGrid.tower.towerId);
             map.DestoryTower(targetGrid.tower, true);
         }
         ClearPreview();
