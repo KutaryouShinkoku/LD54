@@ -96,7 +96,7 @@ public class OperateCtrl : Singleton<OperateCtrl>
             Grid grid = map.GetGrid(targetCrd + e);
             linkGrids.Add(grid);
         });
-        if (linkGrids.Find(e => e == null))
+        if (targetGrid == null || linkGrids.Find(e => e == null))
         {
             return EPreviewState.OutOfEdge;
         }
