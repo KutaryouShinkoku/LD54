@@ -29,6 +29,8 @@ public class Configs : Singleton<Configs>
 
     [Header("丰沃土地每秒产出")]
     public int fertileIncome = 1;
+    [Header("丰沃土地产出时间间隔")]
+    public float fertileIncomeTime = 5;
     [Header("防御塔伤害")]
     public float towerDamage = 20f;
     [Header("敌人伤害")]
@@ -37,6 +39,8 @@ public class Configs : Singleton<Configs>
     public int baseTowerCost = 50;
     [Header("场上每多一个防御塔的额外造价")]
     public int addTowerCost = 30;
+    [Header("场上每多一个防御塔的二次提升")]
+    public int addTowerCost2 = 30;
     public float addTowerAtkSpeed = 0.7f;
 
     //[SerializeField]

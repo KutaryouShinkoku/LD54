@@ -18,7 +18,7 @@ public class GameManager : Singleton<GameManager>
     public int GetTowerCost(int towerId)
     {
         int num = MapCtrl.Ins.GetTowerNumById(towerId);
-        return Configs.Ins.baseTowerCost + num * Configs.Ins.addTowerCost;
+        return Configs.Ins.baseTowerCost + num * (Configs.Ins.addTowerCost + num * Configs.Ins.addTowerCost2);
     }
 
     public void AddEnergy(int energy)

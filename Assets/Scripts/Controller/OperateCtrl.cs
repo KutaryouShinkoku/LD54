@@ -87,8 +87,16 @@ public class OperateCtrl : Singleton<OperateCtrl>
     }
     private EPreviewState PreviewByMouse(int towerId)
     {
-        Grid targetGrid = map.GetGridByPos(mousePos);
-        if (!targetGrid)
+        Vector2Int targetCrd = map.Pos2crd(mousePos);
+        Grid targetGrid = map.GetGrid(targetCrd);
+        List<Grid> linkGrids = new List<Grid>();
+        TowerData data = Configs.Ins.GetTowerData(towerId);
+        data.Links.ForEach(e =>
+        {
+            Grid grid = map.GetGrid(targetCrd + e);
+            linkGrids.Add(grid);
+        });
+        if (linkGrids.Find(e => e == null))
         {
             return EPreviewState.OutOfEdge;
         }
@@ -96,7 +104,7 @@ public class OperateCtrl : Singleton<OperateCtrl>
         {
             return EPreviewState.CantBePlaced;
         }
-        else if (targetGrid.isColonized)
+        else if (linkGrids.Find(e => e.isColonized))
         {
             return EPreviewState.Colonized;
         }
@@ -104,26 +112,15 @@ public class OperateCtrl : Singleton<OperateCtrl>
         {
             return EPreviewState.LackEnergy;
         }
+        else if (linkGrids.Find(e => e.tower != null))
+        {
+            return EPreviewState.Occupied;
+        }
         else
         {
-            Vector2Int targetCrd = targetGrid.crd;
-            TowerData data = Configs.Ins.GetTower(towerId);
-            List<Vector2Int> crdList = data.Links;
-            for (int i = 0; i < crdList.Count; i++)
-            {
-                Grid grid = map.GetGrid(targetCrd + crdList[i]);
-                if (!grid)
-                {
-                    return EPreviewState.OutOfEdge;
-                }
-                else if (grid.tower != null)
-                {
-                    return EPreviewState.Occupied;
-                }
 
-            }
+            return EPreviewState.Access;
         }
-        return EPreviewState.Access;
 
     }
     public void EnterDelete()

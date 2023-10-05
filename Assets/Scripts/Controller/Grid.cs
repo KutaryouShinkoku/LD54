@@ -66,7 +66,7 @@ public class Grid : MonoBehaviour
             if (timer >= addEnergyTime)
             {
                 timer = 0;
-                addEnergyTime = 4f;
+                addEnergyTime = Configs.Ins.fertileIncomeTime;
                 AddEnergy();
 
             }
